@@ -1,0 +1,8 @@
+<div class="card-wrap p-3 m-2" *ngFor="let dropdown of dropdowns; let i = index">
+  <div class="input-form">
+
+    <h6 for="SelectItem">Select item:</h6>
+    <ng-select [items]="dropdown.items" placeholder="Select a items.." (change)="onSubmit($event, i)">
+    </ng-select>
+  </div>
+</div>

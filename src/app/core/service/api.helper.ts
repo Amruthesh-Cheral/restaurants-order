@@ -8,19 +8,12 @@ import { environment } from 'src/environments/environment';
     providedIn: 'root',
 })
 export class ApiHelper {
-    ngOnInit(): void {
-
-    }
-
-    constructor(private http: HttpClient,
-        private cookieService: CookieService) {
-    }
-
+    constructor(private http: HttpClient,private cookieService: CookieService) {}
+    ngOnInit(): void {}
     post(data: any, endPoint: string, authRequired: boolean = true): Observable<any> {
         let options: { [key: string]: string } = {
             'Accept': 'application/json'
         }
-
         if (authRequired) {
             let sessionString: any = localStorage.getItem("session");
             let session = JSON.parse(sessionString);
@@ -29,8 +22,7 @@ export class ApiHelper {
         }
         let headersJson = new HttpHeaders(options);
         let url = environment.baseUrl + endPoint;
+        
         return this.http.post<any>(url, data, { headers: headersJson });
     }
-
-
 }

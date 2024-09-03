@@ -1,0 +1,38 @@
+// INPUT FIELD
+.input-form {
+    input {
+        &::placeholder {
+            font: 0.8rem sans-serif;
+        }
+    }
+    textarea {
+        width: 100%;
+        min-width: 0px;
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        position: relative;
+        appearance: none;
+        padding-top: 12px;
+        padding-bottom: 8px;
+        vertical-align: top;
+        border-radius: 16px;
+        border: 1px solid;
+        font-weight: 500;
+    }
+}
+// SEARCH FILED
+.search {
+    position: relative;
+    i {
+        top: 10px;
+        left: 10px;
+        position: absolute;
+    }
+    input {
+        padding-left: 30px;
+        width: 200px;
+        &::placeholder {
+            font-size: 15px;
+        }
+    }
+}

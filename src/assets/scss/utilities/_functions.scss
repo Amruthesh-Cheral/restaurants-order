@@ -1,0 +1,79 @@
+// body {
+//     background-color: $bg-color; // Light mode background color
+//     color: $text-color; // Light mode text color
+// }
+
+@each $name, $color in $global-map {
+    #{".bg-" + $name} {
+        background: $color !important;
+    }
+    #{".border-" + $name} {
+        border-color: $color !important;
+    }
+    #{".btn-" + $name} {
+        background: $color;
+        border-color: $color;
+        &:hover,
+        &:focus,
+        &:active {
+            background: rgba($color, 0.8);
+            border-color: $color;
+        }
+    }
+    #{".btn-outline-" + $name} {
+        background: transparent;
+        border-color: $color;
+        color: $color;
+        &:hover,
+        &:focus,
+        &:active {
+            background: rgba($color, 0.8);
+            border-color: $color;
+            box-shadow: none;
+            outline: none;
+        }
+    }
+    #{".text-" + $name} {
+        color: $color !important;
+    }
+}
+
+.dark-theme {
+    background-color: map-get($dark-map, bg-color);
+    color: map-get($dark-map, text-color);
+
+    @each $name, $color in $dark-map {
+        #{".bg-" + $name} {
+            background: $color !important;
+        }
+        #{".border-" + $name} {
+            border-color: $color !important;
+        }
+        #{".btn-" + $name} {
+            background: $color;
+            border-color: $color;
+            &:hover,
+            &:focus,
+            &:active {
+                background: rgba($color, 0.8);
+                border-color: $color;
+            }
+        }
+        #{".btn-outline-" + $name} {
+            background: transparent;
+            border-color: $color;
+            color: $color;
+            &:hover,
+            &:focus,
+            &:active {
+                background: rgba($color, 0.8);
+                border-color: $color;
+                box-shadow: none;
+                outline: none;
+            }
+        }
+        #{".text-" + $name} {
+            color: $color !important;
+        }
+    }
+}

@@ -15,6 +15,11 @@ import { LoginPageComponent } from './modules/auth/pages/login-page/login-page.c
 import { RegisterComponent } from './modules/auth/pages/register/register.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { ProfileViewComponent } from './modules/profile-view/profile-view.component';
+import { SelectdropComponent } from './shared/component/selectdrop/selectdrop.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,7 @@ import { ProfileViewComponent } from './modules/profile-view/profile-view.compon
     UserManageComponent,
     ProjectDetailsComponent,
     RegisterComponent,
+    SelectdropComponent,
   ],
   imports: [
     MatMenuModule,
@@ -36,6 +42,10 @@ import { ProfileViewComponent } from './modules/profile-view/profile-view.compon
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    NgSelectModule,
+    MatTabsModule,
+    BrowserAnimationsModule ,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

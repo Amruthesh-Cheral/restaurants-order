@@ -1,28 +1,35 @@
-<header class="app-header pt-3 pb-3">
+<header class="app-header bg-white pt-3 pb-3">
     <div class="main-header-container container-fluid">
         <div class="d-flex align-items-center justif-content-between w-100">
             <div class="d-flex align-items-center">
                 <div class="humberger">
                     <div (click)="openClose()">
-                        <i class="fa fa-solid fa-bars" ></i>
+                        <i class="text-app-primary2 fa fa-solid fa-bars" ></i>
                     </div>
                 </div>
-                <div class="header-element-search ms-3">
+                <div class="ms-3">
                     <div class="search"><input type="text" class="header-search-bar form-control"
                             placeholder="Search here ...">
                         <i class="fa fas fa-search"></i>
                     </div>
                 </div>
             </div>
+
             
             <div class="d-flex justify-content-end w-100">
-                <div class="profile" [matMenuTriggerFor]="menu">
-                    <i class="fa fas fa-user-circle"></i>
+                <div class="pe-2">
+                    <i class="text-app-primary2 fa fa-moon-o pe-2 " (click)="modeChange()" *ngIf="!modeChangeval" aria-hidden="true"></i>
+                    <i class="text-app-primary2 fa fa-sun-o pe-2" (click)="modeChange()" *ngIf="modeChangeval" aria-hidden="true"></i>
                 </div>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item>Name</button>
-                    <button mat-menu-item>Logout</button>
-                  </mat-menu>
+                <div class="d-flex">
+                    <div class="pe-2" [matMenuTriggerFor]="menu">
+                        <i class="text-app-primary2 fa fas fa-user-circle"></i>
+                    </div>
+                    <mat-menu #menu="matMenu" class="profile-menu">
+                        <button mat-menu-item>Name</button>
+                        <button mat-menu-item>Logout</button>
+                    </mat-menu>
+                </div>
             </div>
 
         </div>

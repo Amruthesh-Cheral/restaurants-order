@@ -1,14 +1,54 @@
+@import '../../../assets/scss/utilities/variables';
 .sidebar {
     width: 240px;
-    background-color: var(--bg-color);
     height: 100vh;
     transition: 0.5s;
-    &.sidebar-fixed {
-        position: fixed;
-        top: 0;
-        bottom: 0;
+    &.side-nav-close {
+        width: 78px;
+        transition: 0.5s;
+        .side-menu {
+            .item {
+                span {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .logo {
+        img {
+            display: block;
+        }
+    }
+    .side-menu {
+        .active {
+            background-color: $light-fade-bg;
+            border-radius: 28px;
+        }
+        img {
+            width: 50px;
+        }
+        .sub-name {
+            display: block;
+        }
+        .item {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+}
+.sidebar-content {
+    transition: 0.5s;
+    &.sidebar-open {
+        margin-left: 240px;
     }
     &.side-nav-close {
+        margin-left: 78px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .sidebar {
         width: 78px;
         transition: 0.5s;
         .side-menu {
@@ -16,54 +56,25 @@
             .item {
                 display: flex;
                 justify-content: center;
+                span {
+                    display: none;
+                }
+            }
+            .sub-name {
+                display: none;
+            }
+        }
+        .logo {
+            img {
+                display: none;
+            }
+            p {
+                display: block;
             }
         }
     }
-    .logo {
-        width: 100px;
-        color: var(--white);
-        font-size: 20px;
-    }
-
-    .side-menu {
-        color: var(--white);
-        white-space: nowrap;
-        img {
-            width: 50px;
-        }
-        .sub-name {
-            color: var(--sub-name);
-            font-size: 13px;
-            font-weight: 600;
-            margin: 0;
-        }
-        .item {
-            cursor: pointer;
-            color: var(--white);
-            text-decoration: none;
-            span {
-                font-size: 16px;
-                font-weight: 400;
-            }
-        }
-    }
-}
-
-.sidebar-content {
-    &.sidebar-open {
-        margin-left: 240px;
+    .sidebar-content {
+        margin-left: 78px !important;
         transition: 0.5s;
     }
-    &.side-nav-close {
-        margin-left: 78px;
-        transition: 0.5s;
-    }
-}
-
-.main-body {
-    background-color: var(--bg-All);
-}
-.active {
-    background-color: var(--light-fade-bg);
-    border-radius: 28px;
 }

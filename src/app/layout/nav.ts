@@ -6,17 +6,17 @@ import { INavData } from '../data/data-types';
 
 export const navItems: INavData[] = [  {
   title: true,
-  name: 'name 2',
+  name: 'Admin',
   subCat: [
-    {
-      subname: 'Dashboard',
-      icon: 'fa fa-solid fa-user',
-      url: '/dashboard',
+    // {
+    //   subname: 'Dashboard',
+    //   icon: 'fa fa-solid fa-user',
+    //   url: '/dashboard',
      
-    },
+    // },
     {
       subname: 'User Manage',
-      icon: 'fa fa-solid fa-user',
+      icon: 'fa fa-building',
       url: '/user-manage',
       
     },
@@ -24,7 +24,7 @@ export const navItems: INavData[] = [  {
 },
   {
     title: true,
-    name: 'Dashboard',
+    name: 'Users',
     subCat: [
       {
         subname: 'Profile',
@@ -34,13 +34,13 @@ export const navItems: INavData[] = [  {
       },
       {
         subname: 'Projects',
-        icon: 'fa fa-solid fa-user',
+        icon: 'fa fa-star',
         url: 'project-details',
         
       },
       {
         subname: 'Quotes',
-        icon: 'fa fa-solid fa-user',
+        icon: 'fa fa-briefcase',
         
       },
     ],

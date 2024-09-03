@@ -1,10 +1,9 @@
 @import 'bootstrap/scss/bootstrap';
-@import '././assets/styles/style-reset.scss';
-@import '././assets/styles/styles-variables.scss';
 @import "/node_modules/font-awesome/scss/font-awesome";
-
+@import 'ngx-toastr/toastr';
 // UTILITIES
 @import "assets//scss/utilities/variables";
+@import "assets//scss/utilities/functions";
 
 // BASE
 @import "assets/scss/base/base";
@@ -12,6 +11,7 @@
 
 // MODULES
 @import "assets/scss/modules/card";
+@import "assets/scss/modules/buttons";
+@import "assets/scss/modules/input-fields";
 
-
-
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';

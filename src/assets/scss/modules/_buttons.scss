@@ -1,0 +1,7 @@
+.brand-btn {
+    transform: scale(1);
+    &:hover {
+        transform: scale(0.98);
+        transition: 0.3s;
+    }
+}

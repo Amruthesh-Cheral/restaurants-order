@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 import { ApiEndPoints } from 'src/app/core/constants';
 import { ApiHelper } from 'src/app/core/service/api.helper';
 
@@ -21,7 +22,8 @@ export class LoginPageComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private cookieService: CookieService,
-    private apiHelper: ApiHelper
+    private apiHelper: ApiHelper,
+    private toastr : ToastrService
   ) {
     this.loginForm = this.formBuilder.group({
       phoneNumber: ['', Validators.required],
@@ -85,7 +87,8 @@ export class LoginPageComponent {
 
       var loginVal = 'logged'
       localStorage.setItem('currentUser', JSON.stringify({ loginVal }));
-      this.router.navigate(['/main']);
+      this.toastr.success('Welcome to Prodflow.!');
+      this.router.navigate(['/profile']);
     },)
   }
 
