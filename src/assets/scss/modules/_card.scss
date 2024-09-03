@@ -1,0 +1,15 @@
+.card-wrap {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    border-radius: 14px;
+    min-width: 0px;
+    word-wrap: break-word;
+    background: var(--white);
+    box-shadow: 14px 17px 40px 4px rgba(112, 144, 176, 0.08);
+    background-clip: border-box;
+    margin-bottom: 20px;
+    align-items: center;
+}

@@ -1,0 +1,27 @@
+.main-header-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+.header-element-search {
+    .search {
+        position: relative;
+    }
+    i {
+        top: 10px;
+        left: 10px;
+        position: absolute;
+    }
+    input {
+        padding-left: 30px;
+        width: 200px;
+        &::placeholder {
+            font-size: 15px;
+        }
+    }
+}
+.headermenu-end {
+    i {
+        font-size: 30px;
+    }
+}

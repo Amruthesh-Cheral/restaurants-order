@@ -1,0 +1,17 @@
+@import 'bootstrap/scss/bootstrap';
+@import '././assets/styles/style-reset.scss';
+@import '././assets/styles/styles-variables.scss';
+@import "/node_modules/font-awesome/scss/font-awesome";
+
+// UTILITIES
+@import "assets//scss/utilities/variables";
+
+// BASE
+@import "assets/scss/base/base";
+@import "assets/scss/base/reset";
+
+// MODULES
+@import "assets/scss/modules/card";
+
+
+

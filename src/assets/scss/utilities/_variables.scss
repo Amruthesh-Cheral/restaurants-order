@@ -1,0 +1,36 @@
+/* styles.css */
+
+/* Default to light mode */
+
+$font-primary: "Gotham";
+$primary: #212b37;
+$black: #000;
+$white: #fff;
+$secondary: #6e829f;
+$bg-color: #212947;
+$text-color: #333333;
+$light-fade-bg: #363e59;
+$white: #fff;
+$bg-All: #f9fafc;
+$dark: #000;
+$sub-name: #b2afaf;
+
+:root {
+  --primary-color: #212b37;
+  --secondary-color: #6e829f;
+  --bg-color: #212947;
+  --text-color: #333333;
+  --light-fade-bg: #363e59;
+  --white: #fff;
+  --bg-All: #f9fafc;
+  --dark: #000;
+  --sub-name: #b2afaf;
+}
+
+/* Dark mode */
+.dark-theme {
+  --primary-color: #1e1e1e;
+  --secondary-color: #f1f1f1;
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+}

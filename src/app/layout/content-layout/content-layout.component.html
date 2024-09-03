@@ -1,0 +1,55 @@
+<!--sidebar-->
+<div class="sidebar sidebar-fixed border-end container-fluid" [ngClass]="{'side-nav-close':sidePanel}">
+  <div class="border-bottom">
+    <div class="logo p-2 d-flex justif-content-center w-100 align-items-center p-4 pb-3 pt-3" [routerLink]="[]">
+      <img src="assets/images/prodflow-logo.png" *ngIf="!sidePanel" class="img-fluid" alt="logo" />
+      <p *ngIf="sidePanel">P</p>
+    </div>
+  </div>
+
+  <div class="side-menu pb-3" data-bs-spy="scroll" data-bs-target="#navbar-example">
+    <div class="" id="navbar-example" *ngFor="let item of navItems">
+      <h4 class="sub-name pb-3 pt-3 " *ngIf="!sidePanel">{{ item.name }}</h4>
+      <div class="mb-2" *ngFor="let subItem of item.subCat">
+        <div class="side-main-menu">
+          <a routerLink="{{ subItem.url }}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            class="item d-flex align-items-center p-4 pt-1 pb-1">
+            <i class="{{ subItem.icon }}"></i>
+            <span class="ps-2" *ngIf="!sidePanel">{{ subItem.subname }}</span>
+          </a>
+          <!-- <ul class="side-sub-menu ms-4">
+            <li>Sub Title</li>
+            <li>Sub Title</li>
+            <li>Sub Title</li>
+            <li>Sub Title</li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--main-->
+<div class="wrapper d-flex flex-column min-vh-100 sidebar-content sidebar-open"
+  [ngClass]="{'side-nav-close':sidePanel}">
+
+  <!--app-header-->
+  <div class="mb-4 d-print-none header header-sticky p-0 shadow-sm">
+    <div class="container-fluid">
+      <app-header (closeOpenoutput)="openClose()"></app-header>
+    </div>
+  </div>
+  <!--app-body-->
+  <div class="main-body flex-grow-1">
+    <div class="h-auto container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div class="d-print-none p-0 border-top">
+    <div class="container-fluid">
+      <app-footer></app-footer>
+    </div>
+  </div>
+
+  <!--app footer-->
+</div>
