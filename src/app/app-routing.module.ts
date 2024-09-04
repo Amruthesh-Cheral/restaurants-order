@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboradComponent } from './modules/home/dashborad/dashborad/dashborad.component';
-import { UserManageComponent } from './modules/user-manage/user-manage.component';
+import { DashboradComponent } from './modules/admin/dashborad/dashborad/dashborad.component';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
-import { ProjectDetailsComponent } from './modules/project-details/project-details.component';
 import { LoginPageComponent } from './modules/auth/pages/login-page/login-page.component';
 import { ProfileViewComponent } from './modules/profile-view/profile-view.component';
+import { UserServicesComponent } from './modules/user/user-services/user-services.component';
+import { SpecialComponent } from './modules/user/special/special.component';
+import { UserCheffComponent } from './modules/user/user-cheff/user-cheff.component';
+import { AllOrdersComponent } from './modules/admin/all-orders/all-orders.component';
+import { CheffOrdersComponent } from './modules/cheff/cheff-orders/cheff-orders.component';
 
 const routes: Routes = [
   {
@@ -14,37 +17,75 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: '',
-    component : ContentLayoutComponent,
-    children:[
+    path: 'user',
+    component: ContentLayoutComponent,
+    children: [
       {
         path: '',
-        redirectTo: 'profile',
+        redirectTo: 'services',
+        pathMatch: 'full',
+      },
+      {
+        path: 'services',
+        component: UserServicesComponent
+      },
+      {
+        path: 'specials',
+        component: SpecialComponent
+      },
+      {
+        path: 'cheff',
+        component: UserCheffComponent
+      },
+    ]
+  },
+  {
+    path: 'admin',
+    component: ContentLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
         pathMatch: 'full',
       },
       {
         path: 'dashboard',
-        component : DashboradComponent 
+        component: DashboradComponent
       },
       {
-        path: 'project-details',
-        component : ProjectDetailsComponent 
+        path: 'all-orders',
+        component: AllOrdersComponent
+      },
+    ]
+  },
+  {
+    path: 'cheff',
+    component: ContentLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
       },
       {
-        path: 'user-manage',
-        component : UserManageComponent 
+        path: 'dashboard',
+        component: DashboradComponent
       },
       {
-        path: 'profile',
-        component : ProfileViewComponent
+        path: 'all-orders',
+        component: CheffOrdersComponent
       },
     ]
   },
   {
     path: 'login',
-    component : LoginPageComponent
+    component: LoginPageComponent
   },
-  
+  {
+    path: 'profile',
+    component: ProfileViewComponent
+  },
+
 ];
 
 @NgModule({

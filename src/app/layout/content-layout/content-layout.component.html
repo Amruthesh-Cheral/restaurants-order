@@ -11,7 +11,7 @@
     <div class="side-menu text-nowrap pb-3" data-bs-spy="scroll" data-bs-target="#navbar-example">
       <div class="" id="navbar-example" *ngFor="let item of navItems">
         
-        <p class="sub-name h6 text-app-muted fw-600 pb-3 m-0 pt-3 " *ngIf="!sidePanel">{{ item.name }}</p>
+        <p class="sub-name h6 text-app-muted fw-600 pb-2 m-0 pt-2 " *ngIf="!sidePanel">{{ item.name }}</p>
         <div class="mb-2" *ngFor="let subItem of item.subCat">
           <div class="side-main-menu">
             <a routerLink="{{ subItem.url }}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
