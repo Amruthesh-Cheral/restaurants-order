@@ -48,11 +48,11 @@ export const navItems: INavData[] = [{
   title: true,
   name: 'Cheff',
   subCat: [
-    {
-      subname: 'Dashboard',
-      icon: 'fa fa-star',
-      url: '/cheff/dashboard',
-    },
+    // {
+    //   subname: 'Dashboard',
+    //   icon: 'fa fa-star',
+    //   url: '/cheff/dashboard',
+    // },
     {
       subname: 'Orders',
       icon: 'fa fa-solid fa-user',

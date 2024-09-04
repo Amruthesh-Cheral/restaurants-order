@@ -9,6 +9,7 @@ import { SpecialComponent } from './modules/user/special/special.component';
 import { UserCheffComponent } from './modules/user/user-cheff/user-cheff.component';
 import { AllOrdersComponent } from './modules/admin/all-orders/all-orders.component';
 import { CheffOrdersComponent } from './modules/cheff/cheff-orders/cheff-orders.component';
+import { ChefDashboardComponent } from './modules/cheff/chef-dashboard/chef-dashboard.component';
 
 const routes: Routes = [
   {
@@ -69,7 +70,7 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        component: DashboradComponent
+        component: ChefDashboardComponent
       },
       {
         path: 'all-orders',
