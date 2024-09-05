@@ -1,1 +1,50 @@
-<p>all-orders works!</p>
+<div class="card p-2">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="Today">
+            <table class="table table-bordered mt-4">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Items</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Order Time</th>
+                    <th scope="col">Table No</th>
+                    <th scope="col">Delivered Time</th>
+                    <th scope="col">Paid Status</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">#3212</th>
+                    <td>Biriyani</td>
+                    <td>3</td>
+                    <td>19:11</td>
+                    <td>11</td>
+                    <td>19:25</td>
+                    <td><span class="badge bg-success">Paid</span>
+                    </td>
+                    <td><span class="badge rounded-pill bg-success">Completed</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">#3212</th>
+                    <td>Veg Burger</td>
+                    <td>3</td>
+                    <td>10:11</td>
+                    <td>12</td>
+                    <td>10:25</td>
+                    <td><span class="badge bg-warning">Unpaid</span>
+                    </td>
+                    <td><span class="badge rounded-pill bg-danger">Cancelled</span>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+    
+        </mat-tab>
+        <mat-tab label="All">All</mat-tab>
+        
+      </mat-tab-group>
+</div>

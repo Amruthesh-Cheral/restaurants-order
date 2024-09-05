@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { importProvidersFrom, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,12 @@ import { UserCheffComponent } from './modules/user/user-cheff/user-cheff.compone
 import { AllOrdersComponent } from './modules/admin/all-orders/all-orders.component';
 import { CheffOrdersComponent } from './modules/cheff/cheff-orders/cheff-orders.component';
 import { ChefDashboardComponent } from './modules/cheff/chef-dashboard/chef-dashboard.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from "@angular/material/core";
+import { AddProductsComponent } from './modules/cheff/add-products/add-products.component';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +48,7 @@ import { ChefDashboardComponent } from './modules/cheff/chef-dashboard/chef-dash
     AllOrdersComponent,
     CheffOrdersComponent,
     ChefDashboardComponent,
+    AddProductsComponent,
   ],
   imports: [
     MatMenuModule,
@@ -51,11 +58,18 @@ import { ChefDashboardComponent } from './modules/cheff/chef-dashboard/chef-dash
     ReactiveFormsModule,
     FontAwesomeModule,
     NgSelectModule,
+    MatFormFieldModule,
     MatTabsModule,
+    MatDatepickerModule,
+    MatInputModule,
     BrowserAnimationsModule ,
     ToastrModule.forRoot(),
+   
+
   ],
-  providers: [],
+  providers: [
+    importProvidersFrom(MatNativeDateModule)
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

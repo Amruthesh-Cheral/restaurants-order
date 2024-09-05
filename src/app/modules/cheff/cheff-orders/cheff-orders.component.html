@@ -1,98 +1,25 @@
+<div class="p-3">
+  <input matInput [matDatepicker]="picker">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</div>
+
 <div class="row">
-    <div class="col-md-3">
-        <div class="card mb-3">
-            <div class="card-body order">
-                <div class="d-flex align-items-center pb-3">
-                    <img src="assets/images/food-services/burger.jpg" class="img-fluid" alt="">
-                    <h6 class="card-title ps-2">Burger <span class="text-muted" >#321</span></h6>
-                </div>
-              <h6 class="card-subtitle text-muted">Date : 08/02/2022</h6>
-              <p class="card-text mb-0">Table Order : <span class="text-muted">11</span></p>
-              <p class="card-text">Time Left to confirm : <span class="text-muted">22:12</span></p>
-              <a href="#" class="btn btn-primary me-2">Start</a>
-              <a href="#" class="btn btn-danger me-2">  <span aria-hidden="true">&times;</span></a>
-              <a href="#" class="btn btn-success">Finish</a>
-            </div>
-          </div>
+  <div class="col-md-4 col-sm-12 col-lg-3" *ngFor="let order of allOrders" >
+    <div class="card mb-3" >
+      <div class="card-body order">
+        <div class="d-flex align-items-center pb-3">
+          <img src="{{order.productImg}}" class="img-fluid" alt="">
+          <h6 class="card-title ps-2">{{order.product}} <span class="text-muted">#{{order.productId}}</span></h6>
+        </div>
+        <h6 class="card-subtitle text-muted">Date : {{order.orderData}}</h6>
+        <p class="card-text mb-0">Table Order : <span class="text-muted">{{order.tableOrder}}</span></p>
+        <p class="card-text">Time Left to confirm : <span class="text-muted">{{order.timeLeft}}</span></p>
+        <a href="#" class="btn btn-primary me-2">Start</a>
+        <a href="#" class="btn btn-danger me-2"> <span aria-hidden="true">&times;</span></a>
+        <a href="#" class="btn btn-success">Finish</a>
+      </div>
     </div>
-    <div class="col-md-3">
-        <div class="card mb-3">
-            <div class="card-body order">
-                <div class="d-flex align-items-center pb-3">
-                    <img src="assets/images/food-services/sandwich.jpg" class="img-fluid" alt="">
-                    <h6 class="card-title ps-2"> Sandwich <span class="text-muted" >#621</span></h6>
-                </div>
-              <h6 class="card-subtitle text-muted">Date : 08/02/2022</h6>
-              <p class="card-text mb-0">Table Order : <span class="text-muted">11</span></p>
-              <p class="card-text">Time Left to confirm : <span class="text-muted">22:12</span></p>
-              <a href="#" class="btn btn-primary me-2">Start</a>
-              <a href="#" class="btn btn-danger me-2">  <span aria-hidden="true">&times;</span></a>
-              <a href="#" class="btn btn-success">Finish</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-3">
-            <div class="card-body order">
-                <div class="d-flex align-items-center pb-3">
-                    <img src="assets/images/food-services/biriyani.jpeg" class="img-fluid" alt="">
-                    <h6 class="card-title ps-2">Thalassery Biriyani <span class="text-muted" >#121</span></h6>
-                </div>
-              <h6 class="card-subtitle text-muted">Date : 08/02/2022</h6>
-              <p class="card-text mb-0">Table Order : <span class="text-muted">11</span></p>
-              <p class="card-text">Time Left to confirm : <span class="text-muted">22:12</span></p>
-              <a href="#" class="btn btn-primary me-2">Start</a>
-              <a href="#" class="btn btn-danger me-2">  <span aria-hidden="true">&times;</span></a>
-              <a href="#" class="btn btn-success">Finish</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-3">
-            <div class="card-body order">
-                <div class="d-flex align-items-center pb-3">
-                    <img src="assets/images/food-services/burger.jpg" class="img-fluid" alt="">
-                    <h6 class="card-title ps-2">Burger <span class="text-muted" >#321</span></h6>
-                </div>
-              <h6 class="card-subtitle text-muted">Date : 08/02/2022</h6>
-              <p class="card-text mb-0">Table Order : <span class="text-muted">11</span></p>
-              <p class="card-text">Time Left to confirm : <span class="text-muted">22:12</span></p>
-              <a href="#" class="btn btn-primary me-2">Start</a>
-              <a href="#" class="btn btn-danger me-2">  <span aria-hidden="true">&times;</span></a>
-              <a href="#" class="btn btn-success">Finish</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-3">
-            <div class="card-body order">
-                <div class="d-flex align-items-center pb-3">
-                    <img src="assets/images/food-services/burger.jpg" class="img-fluid" alt="">
-                    <h6 class="card-title ps-2">Burger <span class="text-muted" >#321</span></h6>
-                </div>
-              <h6 class="card-subtitle text-muted">Date : 08/02/2022</h6>
-              <p class="card-text mb-0">Table Order : <span class="text-muted">11</span></p>
-              <p class="card-text">Time Left to confirm : <span class="text-muted">22:12</span></p>
-              <a href="#" class="btn btn-primary me-2">Start</a>
-              <a href="#" class="btn btn-danger me-2">  <span aria-hidden="true">&times;</span></a>
-              <a href="#" class="btn btn-success">Finish</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-3">
-            <div class="card-body order">
-                <div class="d-flex align-items-center pb-3">
-                    <img src="assets/images/food-services/burger.jpg" class="img-fluid" alt="">
-                    <h6 class="card-title ps-2">Burger <span class="text-muted" >#321</span></h6>
-                </div>
-              <h6 class="card-subtitle text-muted">Date : 08/02/2022</h6>
-              <p class="card-text mb-0">Table Order : <span class="text-muted">11</span></p>
-              <p class="card-text">Time Left to confirm : <span class="text-muted">22:12</span></p>
-              <a href="#" class="btn btn-primary me-2">Start</a>
-              <a href="#" class="btn btn-danger me-2">  <span aria-hidden="true">&times;</span></a>
-              <a href="#" class="btn btn-success">Finish</a>
-            </div>
-          </div>
-    </div>
+  </div>
 </div>

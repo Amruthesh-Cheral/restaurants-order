@@ -5,7 +5,7 @@
 
 @each $name, $color in $global-map {
     #{".bg-" + $name} {
-        background: $color !important;
+        background-color: $color !important;
     }
     #{".border-" + $name} {
         border-color: $color !important;

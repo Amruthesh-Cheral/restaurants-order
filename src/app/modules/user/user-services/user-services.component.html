@@ -2,21 +2,26 @@
     <mat-tab label="All">
 
         <div class="row mt-3">
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3 col-sm-12"  *ngFor="let item of allServices">
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="d-flex order-items">
-                            <img class="card-img-top me-3" src="../../../../assets/images/food-services/biriyani.jpeg" alt="Card image cap">
+                            <img class="card-img-top me-2" src="{{item.img}}" alt="Product image">
                            <div class="">
-                            <h5 class="card-title">Thalassey Biriyani</h5>
-                            <h6 class="card-title">$344.2</h6>
+                            <h6 class="card-title">{{item.item}}</h6>
+                            <h6 class="card-title">₹{{item.amount}}</h6>
+                            <div class="quantity">
+                              <a href="#" class="minus bg-app-primary"><span>-</span></a>
+                              <input name="quantity" class="border-app-primary" type="text" value="1">
+                              <a href="#" class="plus bg-app-primary"><span>+</span></a>
+                            </div>
                            </div>
                         </div>
-                      <p class="card-text">The traditional process of Chicken Biryani starts by marinating meat in yogurt...</p>
+                      <p class="h8">{{item.content}}</p>
                      
                       <div class="d-flex">
                         <!-- <input type="text" placeholder="Table Number" class="form-control me-2"> -->
-                          <a href="#" class="btn btn-primary">Cart</a>
+                          <a href="#" class="btn btn-primary">Add</a>
                         </div>
                       
                     </div>

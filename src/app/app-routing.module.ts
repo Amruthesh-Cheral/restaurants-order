@@ -10,6 +10,7 @@ import { UserCheffComponent } from './modules/user/user-cheff/user-cheff.compone
 import { AllOrdersComponent } from './modules/admin/all-orders/all-orders.component';
 import { CheffOrdersComponent } from './modules/cheff/cheff-orders/cheff-orders.component';
 import { ChefDashboardComponent } from './modules/cheff/chef-dashboard/chef-dashboard.component';
+import { AddProductsComponent } from './modules/cheff/add-products/add-products.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,10 @@ const routes: Routes = [
       {
         path: 'all-orders',
         component: CheffOrdersComponent
+      },
+      {
+        path: 'add-products',
+        component: AddProductsComponent
       },
     ]
   },

@@ -57,6 +57,11 @@ export const navItems: INavData[] = [{
       subname: 'Orders',
       icon: 'fa fa-solid fa-user',
       url: '/cheff/all-orders',
+    },
+    {
+      subname: 'Add Product',
+      icon: 'fa fa-solid fa-user',
+      url: '/cheff/add-products',
 
     },
   ],
