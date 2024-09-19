@@ -11,11 +11,12 @@ import { AllOrdersComponent } from './modules/admin/all-orders/all-orders.compon
 import { CheffOrdersComponent } from './modules/cheff/cheff-orders/cheff-orders.component';
 import { ChefDashboardComponent } from './modules/cheff/chef-dashboard/chef-dashboard.component';
 import { AddProductsComponent } from './modules/cheff/add-products/add-products.component';
+import { OrderingPersonComponent } from './modules/table-order/ordering-person/ordering-person.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/order',
     pathMatch: 'full',
   },
   {
@@ -72,6 +73,29 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: ChefDashboardComponent
+      },
+      {
+        path: 'all-orders',
+        component: CheffOrdersComponent
+      },
+      {
+        path: 'add-products',
+        component: AddProductsComponent
+      },
+    ]
+  },
+  {
+    path: 'order',
+    component: ContentLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'items-order',
+        pathMatch: 'full',
+      },
+      {
+        path: 'items-order',
+        component: OrderingPersonComponent
       },
       {
         path: 'all-orders',

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboradComponent } from './modules/admin/dashborad/dashborad/dashborad.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -13,7 +13,6 @@ import { LoginPageComponent } from './modules/auth/pages/login-page/login-page.c
 import { RegisterComponent } from './modules/auth/pages/register/register.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { ProfileViewComponent } from './modules/profile-view/profile-view.component';
-import { SelectdropComponent } from './shared/component/selectdrop/selectdrop.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -29,6 +28,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from "@angular/material/core";
 import { AddProductsComponent } from './modules/cheff/add-products/add-products.component';
+import { OrderingPersonComponent } from './modules/table-order/ordering-person/ordering-person.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { OrderItemComponent } from './modules/table-order/order-item/order-item.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -41,7 +44,6 @@ import { AddProductsComponent } from './modules/cheff/add-products/add-products.
     HeaderComponent,
     ContentLayoutComponent,
     RegisterComponent,
-    SelectdropComponent,
     UserServicesComponent,
     SpecialComponent,
     UserCheffComponent,
@@ -49,6 +51,8 @@ import { AddProductsComponent } from './modules/cheff/add-products/add-products.
     CheffOrdersComponent,
     ChefDashboardComponent,
     AddProductsComponent,
+    OrderingPersonComponent,
+    OrderItemComponent,
   ],
   imports: [
     MatMenuModule,
@@ -56,16 +60,17 @@ import { AddProductsComponent } from './modules/cheff/add-products/add-products.
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     FontAwesomeModule,
     NgSelectModule,
     MatFormFieldModule,
     MatTabsModule,
     MatDatepickerModule,
     MatInputModule,
+    MatDialogModule,
+    MatCheckboxModule,
     BrowserAnimationsModule ,
     ToastrModule.forRoot(),
-   
-
   ],
   providers: [
     importProvidersFrom(MatNativeDateModule)

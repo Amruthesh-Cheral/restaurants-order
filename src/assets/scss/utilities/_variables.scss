@@ -3,8 +3,9 @@
 /* Default to light mode */
 
 $font-primary: "Gotham";
-
-$light-fade-bg: #0a4b3c;
+// :root {
+//   --light-fade-bg: #0a4b3c;
+// }
 
 /* Default to light mode */
 $global-map: (
@@ -12,7 +13,9 @@ $global-map: (
   app-primary: #013a2d,
   app-primary2: #013a2d,
   app-muted: #407b6d,
+  hash:#828282,
   white: #fff,
+  black: #0000,
   white2: #fff,
   app-hash: #f1f2f5,
   hash2: #dee2e6,
@@ -26,8 +29,11 @@ $dark-map: (
   app-muted: #6e829f,
   white: #19191c,
   white2: #ffff,
+  black: #fff,
   app-hash: #2d2d30,
   hash2: #161b2e,
   red1 : #e31a1a,
   red10 : #fff5f5,
+  hash:#fff5f5,
+
 );

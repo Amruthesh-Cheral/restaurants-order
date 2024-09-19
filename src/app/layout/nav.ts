@@ -21,50 +21,73 @@ export const navItems: INavData[] = [{
     },
   ],
 },
-{
-  title: true,
-  name: 'Users',
-  subCat: [
-    {
-      subname: 'Services',
-      icon: 'fa fa-solid fa-user',
-      url: '/user/services',
+// {
+//   title: true,
+//   name: 'Users',
+//   subCat: [
+//     {
+//       subname: 'Services',
+//       icon: 'fa fa-solid fa-user',
+//       url: '/user/services',
 
-    },
-    {
-      subname: 'Reviews / Special',
-      icon: 'fa fa-star',
-      url: '/user/specials',
-
-    },
-    {
-      subname: 'Cheff',
-      icon: 'fa fa-briefcase',
-      url: '/user/cheff',
-    },
-  ],
-},
-{
-  title: true,
-  name: 'Cheff',
-  subCat: [
+//     },
     // {
-    //   subname: 'Dashboard',
+    //   subname: 'Reviews / Special',
     //   icon: 'fa fa-star',
-    //   url: '/cheff/dashboard',
+    //   url: '/user/specials',
+
     // },
+    // {
+    //   subname: 'Cheff',
+    //   icon: 'fa fa-briefcase',
+    //   url: '/user/cheff',
+    // },
+//   ],
+// },
+{
+  title: true,
+  name: 'Order',
+  subCat: [
     {
-      subname: 'Orders',
+      subname: 'Items',
       icon: 'fa fa-solid fa-user',
-      url: '/cheff/all-orders',
-    },
-    {
-      subname: 'Add Product',
-      icon: 'fa fa-solid fa-user',
-      url: '/cheff/add-products',
+      url: '/order/items-order',
 
     },
+    // {
+    //   subname: 'Reviews / Special',
+    //   icon: 'fa fa-star',
+    //   url: '/user/specials',
+
+    // },
+    // {
+    //   subname: 'Cheff',
+    //   icon: 'fa fa-briefcase',
+    //   url: '/user/cheff',
+    // },
   ],
 },
+// {
+//   title: true,
+//   name: 'Cheff',
+//   subCat: [
+//     // {
+//     //   subname: 'Dashboard',
+//     //   icon: 'fa fa-star',
+//     //   url: '/cheff/dashboard',
+//     // },
+//     {
+//       subname: 'Orders',
+//       icon: 'fa fa-solid fa-user',
+//       url: '/cheff/all-orders',
+//     },
+//     {
+//       subname: 'Add Product',
+//       icon: 'fa fa-solid fa-user',
+//       url: '/cheff/add-products',
+
+//     },
+//   ],
+// },
 
 ];

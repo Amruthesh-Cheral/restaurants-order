@@ -22,7 +22,7 @@
     }
     .side-menu {
         .active {
-            background-color: $light-fade-bg;
+            background-color: var(--light-fade-bg);
             border-radius: 28px;
         }
         img {

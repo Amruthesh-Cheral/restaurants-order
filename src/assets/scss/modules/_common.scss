@@ -1,0 +1,35 @@
+.food-type {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+    min-width: 16px;
+    height: 16px;
+    display: inline-block;
+    &::before {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin: 2px;
+    }
+    &.veg {
+        color: #219653;
+        background: #fff;
+        border: 2px solid green;
+        &::before{
+            background: green;
+        }
+    }
+    &.non-veg {
+        color: red;
+        background: #fff;
+        border: 2px solid red;
+        &::before{
+            background: red;
+        }
+    }
+}
