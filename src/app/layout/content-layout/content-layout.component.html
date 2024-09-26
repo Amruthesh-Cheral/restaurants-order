@@ -14,17 +14,19 @@
         <p class="sub-name h6 text-app-muted fw-600 pb-2 m-0 pt-2 " *ngIf="!sidePanel">{{ item.name }}</p>
         <div class="mb-2" *ngFor="let subItem of item.subCat">
           <div class="side-main-menu">
-            <a routerLink="{{ subItem.url }}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            <a routerLink="{{ subItem?.url }}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
               class="item d-flex align-items-center p-4 pt-1 pb-1">
               <i class="text-white2 {{ subItem.icon }}"></i>
               <span class="ps-2 text-white2 fw-400" *ngIf="!sidePanel">{{ subItem.subname }}</span>
             </a>
+
             <!-- <ul class="side-sub-menu ms-4">
               <li>Sub Title</li>
               <li>Sub Title</li>
               <li>Sub Title</li>
               <li>Sub Title</li>
             </ul> -->
+
           </div>
         </div>
       </div>

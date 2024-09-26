@@ -12,6 +12,7 @@ import { CheffOrdersComponent } from './modules/cheff/cheff-orders/cheff-orders.
 import { ChefDashboardComponent } from './modules/cheff/chef-dashboard/chef-dashboard.component';
 import { AddProductsComponent } from './modules/cheff/add-products/add-products.component';
 import { OrderingPersonComponent } from './modules/table-order/ordering-person/ordering-person.component';
+import { AllProductsComponent } from './modules/cheff/all-products/all-products.component';
 
 const routes: Routes = [
   {
@@ -82,6 +83,10 @@ const routes: Routes = [
         path: 'add-products',
         component: AddProductsComponent
       },
+      {
+        path: 'all-products',
+        component: AllProductsComponent
+      },
     ]
   },
   {
@@ -105,6 +110,8 @@ const routes: Routes = [
         path: 'add-products',
         component: AddProductsComponent
       },
+     
+      
     ]
   },
   {

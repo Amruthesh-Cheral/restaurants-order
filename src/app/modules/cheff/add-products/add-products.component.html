@@ -13,8 +13,8 @@
                 <input type="text" class="form-control" formControlName="chef" placeholder="Cheff">
             </div>
             <div class="col-md-4 col-sm-12 col-lg-4 mb-3">
-                <select class="form-select" formControlName="foodType" aria-label="Default select example">
-                    <option selected disabled>Veg / Non</option>
+                <select class="form-select" formControlName="foodType">
+                    <option value="" selected disabled>Food Type</option>
                     <option value="veg">Veg</option>
                     <option value="chicekn">Chicken</option>
                     <option value="mutton">Mutton</option>
@@ -22,57 +22,29 @@
                   </select>
             </div>
             <div class="col-md-4 col-sm-12 col-lg-4 mb-3">
-                <select class="form-select" formControlName="spicy" aria-label="Default select example">
-                    <option selected disabled >Spicy</option>
-                    <option value="Spicy">Yes</option>
-                    <option value="Non-Spicy">No</option>
+                <select class="form-select" formControlName="category">
+                    <option value="" selected disabled >Category</option>
+                    <option value="cofee">Coffee</option>
+                    <option value="Sandwiches">Sandwiches</option>
+                    <option value="Tea">Tea</option>
                   </select>
             </div>
            
+            <div class="col-md-6 col-sm-12 col-lg-6 mb-3">
+                <input class="form-control" type="file" id="formFile">
+              </div>
+              <div class="col-md-6 col-sm-12 col-lg-6 mb-3">
+                <select class="form-select" formControlName="cheff">
+                    <option value="" selected disabled>Cheff</option>
+                    <option value="jhon">Jhon</option>
+                    <option value="harry">Harry</option>
+                    <option value="willion">Wiliom</option>
+                  </select>
+            </div>
             <div class="col-md-12 col-sm-12 col-lg-12 mb-3">
                 <textarea name="" formControlName="details" placeholder="eg: Don't make it too spicy" class="form-control" id=""></textarea>
             </div>
             <button type="submit" class="btn bg-app-primary text-white m-3">Submit</button>
         </div>
     </form>
-</div>
-
-<div class="card p-2 mb-5">
-    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-        <mat-tab label="Today">
-            <table class="table table-bordered mt-4">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Items</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Cheff</th>
-                        <th scope="col">Food Type</th>
-                        <th scope="col">Spicy</th>
-                        <th scope="col">Details</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of orderItems; index as i">
-                        <th scope="row">{{i}}</th>
-                        <td>{{item.name}}</td>
-                        <td>{{item.amount}}</td>
-                        <td>{{item.chef}}</td>
-                        <td>{{item.foodType}}</td>
-                        <td>{{item.spicy}}</td>
-                        <td>{{item.details}}</td>
-                        <td class="d-flex w-100">
-                            <span><i class="fa fa-solid fa-trash"></i></span>
-                            <span><i class="fa fas fa-edit"></i></span>
-                        </td>
-                    </tr>
-                 
-                </tbody>
-            </table>
-
-        </mat-tab>
-        <mat-tab label="All">All</mat-tab>
-
-    </mat-tab-group>
 </div>

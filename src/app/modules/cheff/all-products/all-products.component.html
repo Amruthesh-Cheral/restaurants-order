@@ -1,0 +1,34 @@
+<table class="table table-bordered mt-4">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Created Date</th>
+        <th>Update Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of addProducts; index as i">
+        <th>#3212</th>
+        <td>Icecream</td>
+        <td>Desert</td>
+        <td>111</td>
+        <td>12:12:12</td>
+        <td>12:12:12</td>
+        <td><span class="badge rounded-pill bg-warning">Edit</span></td>
+      </tr>
+      <tr>
+        <th>#3212</th>
+        <td>Icecream</td>
+        <td>Desert</td>
+        <td>111</td>
+        <td>12:12:12</td>
+        <td>12:12:12</td>
+        <!-- <td><span class="badge rounded-pill bg-warning" (click)="addPage()">Edit</span></td> -->
+      </tr>
+      
+    </tbody>
+  </table>

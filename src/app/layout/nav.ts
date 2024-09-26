@@ -1,9 +1,4 @@
 import { INavData } from '../data/data-types';
-
-
-
-
-
 export const navItems: INavData[] = [{
   title: true,
   name: 'Admin',
@@ -31,17 +26,17 @@ export const navItems: INavData[] = [{
 //       url: '/user/services',
 
 //     },
-    // {
-    //   subname: 'Reviews / Special',
-    //   icon: 'fa fa-star',
-    //   url: '/user/specials',
+// {
+//   subname: 'Reviews / Special',
+//   icon: 'fa fa-star',
+//   url: '/user/specials',
 
-    // },
-    // {
-    //   subname: 'Cheff',
-    //   icon: 'fa fa-briefcase',
-    //   url: '/user/cheff',
-    // },
+// },
+// {
+//   subname: 'Cheff',
+//   icon: 'fa fa-briefcase',
+//   url: '/user/cheff',
+// },
 //   ],
 // },
 {
@@ -67,27 +62,31 @@ export const navItems: INavData[] = [{
     // },
   ],
 },
-// {
-//   title: true,
-//   name: 'Cheff',
-//   subCat: [
-//     // {
-//     //   subname: 'Dashboard',
-//     //   icon: 'fa fa-star',
-//     //   url: '/cheff/dashboard',
-//     // },
-//     {
-//       subname: 'Orders',
-//       icon: 'fa fa-solid fa-user',
-//       url: '/cheff/all-orders',
-//     },
-//     {
-//       subname: 'Add Product',
-//       icon: 'fa fa-solid fa-user',
-//       url: '/cheff/add-products',
-
-//     },
-//   ],
-// },
+{
+  title: true,
+  name: 'Cheff',
+  subCat: [
+    // {
+    //   subname: 'Dashboard',
+    //   icon: 'fa fa-star',
+    //   url: '/cheff/dashboard',
+    // },
+    // {
+    //   subname: 'Orders',
+    //   icon: 'fa fa-solid fa-user',
+    //   url: '/cheff/all-orders',
+    // },
+    {
+      subname: 'Add Product',
+      icon: 'fa fa-solid fa-user',
+      url: '/cheff/add-products',
+    },
+    {
+      subname: 'All Products',
+      icon: 'fa fa-solid fa-user',
+      url: '/cheff/all-products',
+    },
+  ],
+},
 
 ];

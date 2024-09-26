@@ -32,6 +32,7 @@ import { OrderingPersonComponent } from './modules/table-order/ordering-person/o
 import {MatDialogModule} from '@angular/material/dialog';
 import { OrderItemComponent } from './modules/table-order/order-item/order-item.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AllProductsComponent } from './modules/cheff/all-products/all-products.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AddProductsComponent,
     OrderingPersonComponent,
     OrderItemComponent,
+    AllProductsComponent,
   ],
   imports: [
     MatMenuModule,
