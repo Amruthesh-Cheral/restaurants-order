@@ -2,19 +2,19 @@
     position: relative;
     top: auto;
     right: auto;
-    width: 16px;
+    width: 12px;
     margin-right: 8px;
     vertical-align: middle;
-    min-width: 16px;
-    height: 16px;
+    min-width: 12px;
+    height: 12px;
     display: inline-block;
     &::before {
         content: "";
         position: absolute;
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
-        margin: 2px;
+        margin: 1px;
     }
     &.veg {
         color: #219653;

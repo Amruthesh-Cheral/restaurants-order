@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderItemComponent } from '../order-item/order-item.component';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ordering-person',
@@ -11,15 +11,15 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class OrderingPersonComponent {
   orderFormgroup: FormGroup;
   selected = new FormControl(0);
-  constructor(public dialog : MatDialog){
-    this.orderFormgroup = new FormGroup({
-      selectedTable: new FormControl(null),   
-      firstName: new FormControl('') ,
-      pepperoni: new FormControl('') 
+  selectedCityIds!: string[];
+  pricePerItem: number = 10;
+  constructor(public dialog : MatDialog, private fb : FormBuilder){
+    this.orderFormgroup = this.fb.group({
+      selectedTable: [" "],   
+      quantity: [1, [Validators.min(1), Validators.max(10)]]
     });
   }
 
-  selectedTable: any;
 
   tableNo = [
     { id: 1, name: 'Table No : 1' },
@@ -34,7 +34,7 @@ export class OrderingPersonComponent {
       subProducts: [
         {
           productImg :'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
-          itemName: 'Burger 1',
+          itemName: 'vegg Burger 3 Items 1',
           itemContent: 'Served with fries or Nachos',
           itemPrize: '333.20',
           itemType: 'veg'
@@ -107,6 +107,26 @@ export class OrderingPersonComponent {
     },
   ]
   // ALL PRODUCTS DATA
+
+  increaseQuantity() {
+    const currentQuantity = this.orderFormgroup.get('quantity')?.value;
+    if (currentQuantity < 10) {
+      this.orderFormgroup.patchValue({ quantity: currentQuantity + 1 });
+    }
+  }
+
+  decreaseQuantity() {
+    const currentQuantity = this.orderFormgroup.get('quantity')?.value;
+    if (currentQuantity > 1) {
+      this.orderFormgroup.patchValue({ quantity: currentQuantity - 1 });
+    }
+  }
+
+  calculateTotal(): number {
+    return this.orderFormgroup.get('quantity')?.value * this.pricePerItem;
+  }
+
+
   // ITEM ORDER
   orderList = [
     {
@@ -122,16 +142,7 @@ export class OrderingPersonComponent {
   // ORDER MODIFIERS
 
   orderModifier() {
-    const dialogRef = this.dialog.open(OrderItemComponent, {
-      // data: {name: this.name(), animal: this.animal()},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if (result !== undefined) {
-        // this.animal.set(result);
-      }
-    });
+  
   }
 
   // ORDER MODIFIERS

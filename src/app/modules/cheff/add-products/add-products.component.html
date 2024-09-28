@@ -1,50 +1,44 @@
-
-  
-<div class="card p-2 mb-3">
-    <form  [formGroup]="allItems" (ngSubmit)="addItems()">
-        <div class="row col-sm-6 col-md-6 text-center">
+<div class="card p-2 mb-3 col-md-9 col-sm-12">
+    <form [formGroup]="allItems" (ngSubmit)="addItems()">
+        <div class="row text-center">
             <div class="col-md-8 col-sm-12 col-lg-8 mb-3">
-                <input type="text" class="form-control" formControlName="name" placeholder="Item Name">
+                <input type="text" class="form-control" formControlName="itemName" placeholder="Item Name">
+            </div>
+
+            <div class="col-md-4 col-sm-12 col-lg-4 mb-3">
+                <input type="number" class="form-control" formControlName="amount" placeholder="Amount">
             </div>
             <div class="col-md-4 col-sm-12 col-lg-4 mb-3">
-                <input type="text" class="form-control" formControlName="amount" placeholder="Amount">
+                <div class="d-flex align-items-center">
+                    <p class="pe-2 ps-2 m-0" (click)="categoryPop('foodCategory','Add Food Category')"><i class="fa fa-plus" aria-hidden="true"></i></p>
+                    <ng-select [items]="foodCategorys" bindLabel="name" [virtualScroll]="true" 
+                        appendTo="body" placeholder="Food Category" formControlName="foodCategory">
+                    </ng-select>
+                  
+                </div>
             </div>
+
             <div class="col-md-4 col-sm-12 col-lg-4 mb-3">
-                <input type="text" class="form-control" formControlName="chef" placeholder="Cheff">
+                <div class="d-flex align-items-center">
+                    <p class="pe-2 ps-2 m-0" (click)="categoryPop('foodtype','Add Food Type')"><i class="fa fa-plus" aria-hidden="true"></i></p>
+                    <ng-select [items]="foodTypes" bindLabel="name" [virtualScroll]="true" 
+                        appendTo="body" placeholder="Food Type" formControlName="foodType">
+                    </ng-select>
+                    
+                </div>
             </div>
+
+            
+
             <div class="col-md-4 col-sm-12 col-lg-4 mb-3">
-                <select class="form-select" formControlName="foodType">
-                    <option value="" selected disabled>Food Type</option>
-                    <option value="veg">Veg</option>
-                    <option value="chicekn">Chicken</option>
-                    <option value="mutton">Mutton</option>
-                    <option value="beef">Beef</option>
-                  </select>
+                <input class="form-control" type="file" (change)="onFileSelected($event)" accept="image/*" />
             </div>
-            <div class="col-md-4 col-sm-12 col-lg-4 mb-3">
-                <select class="form-select" formControlName="category">
-                    <option value="" selected disabled >Category</option>
-                    <option value="cofee">Coffee</option>
-                    <option value="Sandwiches">Sandwiches</option>
-                    <option value="Tea">Tea</option>
-                  </select>
-            </div>
-           
-            <div class="col-md-6 col-sm-12 col-lg-6 mb-3">
-                <input class="form-control" type="file" id="formFile">
-              </div>
-              <div class="col-md-6 col-sm-12 col-lg-6 mb-3">
-                <select class="form-select" formControlName="cheff">
-                    <option value="" selected disabled>Cheff</option>
-                    <option value="jhon">Jhon</option>
-                    <option value="harry">Harry</option>
-                    <option value="willion">Wiliom</option>
-                  </select>
-            </div>
+
             <div class="col-md-12 col-sm-12 col-lg-12 mb-3">
                 <textarea name="" formControlName="details" placeholder="eg: Don't make it too spicy" class="form-control" id=""></textarea>
             </div>
-            <button type="submit" class="btn bg-app-primary text-white m-3">Submit</button>
+
+            <button type="submit" class="btn w-100 bg-app-primary text-white mt-3 p-2 ">Submit</button>
         </div>
     </form>
 </div>

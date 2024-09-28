@@ -11,24 +11,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of addProducts; index as i">
+      <tr *ngFor="let item of allProducts; index as i">
         <th>#3212</th>
-        <td>Icecream</td>
-        <td>Desert</td>
-        <td>111</td>
+        <td>{{item.name}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.price}}</td>
         <td>12:12:12</td>
         <td>12:12:12</td>
-        <td><span class="badge rounded-pill bg-warning">Edit</span></td>
+        <td><span class="btn badge rounded-pill bg-warning" (click)="addPage()">Edit</span></td>
       </tr>
-      <tr>
-        <th>#3212</th>
-        <td>Icecream</td>
-        <td>Desert</td>
-        <td>111</td>
-        <td>12:12:12</td>
-        <td>12:12:12</td>
-        <!-- <td><span class="badge rounded-pill bg-warning" (click)="addPage()">Edit</span></td> -->
-      </tr>
+     
       
     </tbody>
   </table>
