@@ -9,27 +9,32 @@
     </div>
 
     <div class="side-menu text-nowrap pb-3" data-bs-spy="scroll" data-bs-target="#navbar-example">
-      <div class="" id="navbar-example" *ngFor="let item of navItems">
-        
-        <p class="sub-name h6 text-app-muted fw-600 pb-2 m-0 pt-2 " *ngIf="!sidePanel">{{ item.name }}</p>
-        <div class="mb-2" *ngFor="let subItem of item.subCat">
-          <div class="side-main-menu">
-            <a routerLink="{{ subItem?.url }}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-              class="item d-flex align-items-center p-4 pt-1 pb-1">
-              <i class="text-white2 {{ subItem.icon }}"></i>
-              <span class="ps-2 text-white2 fw-400" *ngIf="!sidePanel">{{ subItem.subname }}</span>
-            </a>
+        <div class="" id="navbar-example" *ngFor="let item of navItems">
+          
+          <p class="sub-name h6 text-app-muted fw-600 pb-2 m-0 pt-2 " *ngIf="!sidePanel">{{ item.name }}</p>
+          <div class="mb-2" *ngFor="let subItem of item.subCat">
+            <div class="side-main-menu">
 
-            <!-- <ul class="side-sub-menu ms-4">
-              <li>Sub Title</li>
-              <li>Sub Title</li>
-              <li>Sub Title</li>
-              <li>Sub Title</li>
-            </ul> -->
+              <a (click)="toggleSubMenu(subItem.subname)"  routerLink="{{ subItem?.url }}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                class="item d-flex align-items-center p-4 pt-1 pb-1">
+                <i class="text-white2 {{ subItem.icon }}"></i>
+                <span class="ps-2 text-white2 fw-400" *ngIf="!sidePanel">{{ subItem.subname }}</span>
+              </a>
 
+              <ul class="list-group side-sub-menu ms-4 bg-app-muted" *ngIf="subMenuOpen[subItem.subname] && subItem.ssubCat">
+                <li clss="list-group-item" *ngFor="let ssubItem of subItem.ssubCat">
+                  <a routerLink="{{ ssubItem?.url }}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                  class="item d-flex align-items-center p-4 pt-1 pb-1">
+                  <i class="text-white2 {{ ssubItem.icon }}"></i>
+                  <span class="ps-2 text-white2 fw-400" *ngIf="!sidePanel">{{ ssubItem.subname }}</span>
+                </a>
+                </li>
+             
+              </ul>
+
+            </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
   <!--main-->

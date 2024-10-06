@@ -2,22 +2,24 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>Food Type</th>
         <th>Category</th>
         <th>Price</th>
-        <th>Created Date</th>
-        <th>Update Date</th>
+        <th>veg/non</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of allProducts; index as i">
-        <th>#3212</th>
-        <td>{{item.name}}</td>
-        <td>{{item.category}}</td>
-        <td>{{item.price}}</td>
-        <td>12:12:12</td>
-        <td>12:12:12</td>
+        <th>{{i+1}}</th>
+        <td>{{item.foodType.name}}</td>
+        <td>{{item.foodCategory.name}}</td>
+        <td>{{item.amount}}</td>
+        <td> 
+          <div *ngIf="item.nonveg">
+            <span class="badge rounded-pill bg-danger">Non-Veg</span></div>
+          <div *ngIf="item.veg"><span class="badge rounded-pill bg-success">Veg</span></div>
+        </td>
         <td><span class="btn badge rounded-pill bg-warning" (click)="addPage()">Edit</span></td>
       </tr>
      

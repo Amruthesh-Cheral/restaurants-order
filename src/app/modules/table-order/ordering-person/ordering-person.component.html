@@ -4,40 +4,44 @@
     <div class="col-md-8 col-sm-12">
         <div>
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+
                 <mat-tab *ngFor="let item of allProducts ; index as i" label="{{item.menusubCategory}}">
                     <h5 class="mt-3 mb-2">{{item.menusubCategory}}</h5>
                     <div>
-                       
-                            <input type="text" class="form-control mb-2"  placeholder="search here">
-                            <div class="row w-100">
-                                <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-2" *ngFor="let product of item?.subProducts">
-                                   <div class="card">
+                        <input type="text" class="form-control mb-2" placeholder="search here">
+                        <div class="row w-100">
+                            <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-2" *ngFor="let product of item?.subProducts"
+                                indes as i>
+                                <div class="card">
                                     <div class="card-body p-2">
                                         <div class="w-100 product-list">
                                             <div class="d-flex">
-                                                <img src="{{product?.productImg}}" class="product-list__img img-fluid" alt="Product Image">
+                                                <img src="{{product?.productImg}}" class="product-list__img img-fluid"
+                                                    alt="Product Image">
                                                 <div class="ps-2 item-name text-black">
-                                                    <h6 class="h7"><span class="food-type" ngClass="{{product?.itemType}}"></span>{{product?.itemName}}</h6>
+                                                    <h6 class="h7"><span class="food-type"
+                                                            ngClass="{{product?.itemType}}"></span>{{product?.itemName}}
+                                                    </h6>
                                                 </div>
                                             </div>
-                                        <div class="description">
-                                            <p class="text-hash h8">{{product?.itemContent}}</p>
+                                            <div class="description">
+                                                <p class="text-hash h8">{{product?.itemContent}}</p>
+                                            </div>
+                                            <div
+                                                class="item-rate d-flex justify-content-between align-items-center w-100">
+                                                <h6 class="text-app-primary2 m-0 p-0">₹ {{product?.itemPrize}}</h6>
+                                                <button class="btn p-0 m-0 bg-app-primary text-white2 pe-2 ps-2"
+                                                    (click)="orderModifier(product,i)" [disabled]="product.btnDisabled">
+                                                    {{ product.btnDisabled ? 'Added' : 'Add' }}</button>
+                                            </div>
                                         </div>
-                                        <div class="item-rate d-flex justify-content-between align-items-center w-100">
-                                            <h6 class="text-app-primary2 m-0 p-0">{{product?.itemPrize}}
-                                                ₹</h6>
-                                                <p class="btn p-0 m-0  text-primary" (click)="orderModifier()"> Add</p>
-                                        </div>
-
-
                                     </div>
-                                    </div>
-                                   </div>
                                 </div>
                             </div>
-                      
+                        </div>
                     </div>
                 </mat-tab>
+
             </mat-tab-group>
         </div>
     </div>
@@ -53,25 +57,25 @@
                         <p class="h7 fw-bold m-0 p-0">Table : <span>{{ selectedCityIds }} </span></p>
                     </div>
                     <hr class="mt-2 mb-2">
-                    <div *ngFor="let item of orderList">
-                        <div class="d-flex justify-content-between flex-wrap mb-2 align-items-center" >
+                    <div *ngFor="let item of orderList; index as i">
+                        <div class="d-flex justify-content-between flex-wrap mb-2 align-items-center">
                             <h6 class="h7 item-elipsis">{{item.orderName}}</h6>
-                        <div class="d-flex align-items-center">
-                            <div class="quantity">
-                                <button class="minus" aria-label="Decrease" (click)="decreaseQuantity()">&minus;</button>
-                                <input type="number" class="input-box" formControlName="quantity" value="1" min="1" max="10">
-                                <button class="plus" aria-label="Increase" (click)="increaseQuantity()">&plus;</button>
+                            <div class="d-flex align-items-center">
+                                <div class="quantity">
+                                    <button class="minus" (click)="decreaseQuantity(i)">&minus;</button>
+                                    <input type="number" class="input-box" formControlName="quantity" [value]="item.quantity"  min="1" max="10" readonly>
+                                    <button class="plus" (click)="increaseQuantity(i)">&plus;</button>
+                                </div>
+                                <p class="h7 ms-2">₹ <span>{{ item.quantity * item.orderPrize }}</span> </p>
                             </div>
-                            <p class="h7 ms-2">₹ <span>{{ calculateTotal() }}</span> </p>
-                        </div>
                         </div>
                         <hr class="mt-2 mb-2">
                     </div>
-                
-        
+
+
                     <div class="d-flex justify-content-between flex-wrap mb-3 align-items-center">
                         <h6>Total Payble</h6>
-                        <h4 class="fw-bold">₹<span>790</span></h4>
+                        <h4 class="fw-bold">₹<span>{{ calculateTotal() }}</span></h4>
                     </div>
                     <hr class="hr-dash">
                     <div class="d-flex justify-content-between">

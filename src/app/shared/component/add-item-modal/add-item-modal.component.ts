@@ -11,7 +11,9 @@ export class AddItemModalComponent implements OnInit {
   title!: string;
   categoryVal!: string;
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: { categoryVal: string; title: string },private dialogRef: MatDialogRef<AddItemModalComponent>) { }
+  constructor(private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: { categoryVal: string; title: string },
+    private dialogRef: MatDialogRef<AddItemModalComponent>) { }
 
   ngOnInit() {
     this.title = this.data.title;
@@ -19,11 +21,13 @@ export class AddItemModalComponent implements OnInit {
 
   addItem = this.fb.group({
     itemName: [''],
-    checkVal : this.data.categoryVal,
+    checkVal: this.data.categoryVal,
   })
 
   addItemFun() {
     const formData = this.addItem.value;
+    
+    // console.log(formData);
     this.dialogRef.close(formData);
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -10,32 +10,38 @@ import { AddItemModalComponent } from 'src/app/shared/component/add-item-modal/a
   templateUrl: './add-products.component.html',
   styleUrls: ['./add-products.component.scss']
 })
-export class AddProductsComponent {
+export class AddProductsComponent implements OnInit {
   orderItems: any[] = [];
   selectedFile: File | null = null;
-
   title!: string;
   text!: string;
+  foodCategorys: { name: string }[] = [];
+  foodTypes: { name: string }[] = [];
 
-  constructor(public dialog: MatDialog, public fb: FormBuilder, public dataService: ApiHelper, public toster: ToastrService) { }
+  constructor(public dialog: MatDialog, private cd: ChangeDetectorRef, public fb: FormBuilder, public dataService: ApiHelper, public toster: ToastrService) { }
+
+  ngOnInit(): void {
+    const alltypeFoods = JSON.parse(localStorage.getItem('foodType') || '[]');
+    this.foodTypes = alltypeFoods;
+
+    const allCategoryFoods = JSON.parse(localStorage.getItem('foodCategory') || '[]');
+    this.foodCategorys = allCategoryFoods;
+  }
 
   allItems = this.fb.group({
-    itemName: [''],
     amount: [''],
     foodCategory: [null],
     details: [''],
+    nonveg: [''],
+    veg: [''],
     selectedFile: [''],
     foodType: [null]
   });
 
-  foodCategorys = [];
-  foodTypes: {name: string}[] = [];
-
   // img upload
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
-
+  
   }
 
   // CATEGORY POPUP
@@ -49,19 +55,17 @@ export class AddProductsComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
       if (result.checkVal === 'foodtype') {
-        console.log(result);
-        
-        this.foodTypes.push({ name: result.itemName });
-        console.log(this.foodTypes);
-        
+        const foodtypeData = this.foodTypes = [...this.foodTypes, { name: result.itemName }];
+        this.toster.success("Category Added");
+        localStorage.setItem('foodType', JSON.stringify(foodtypeData))
       } else if (result.checkVal === 'foodCategory') {
-        result.itemName.push(this.foodCategorys)
+        const foodcategoryData = this.foodCategorys = [...this.foodCategorys, { name: result.itemName }];
+        localStorage.setItem('foodCategory', JSON.stringify(foodcategoryData))
+        this.toster.success("Category Added");
       } else {
-        alert("else ")
+        this.toster.warning("Unknown Field");
       }
-      console.log('Dialog closed with data:', result);
     });
 
   }
@@ -70,10 +74,12 @@ export class AddProductsComponent {
 
   addItems() {
     if (this.allItems.valid) {
-      const addData = this.allItems.value
+      const addData = this.allItems.value;
       this.dataService.alldata(addData);
       this.toster.success("Form Submited Successfully");
-      console.log(this.allItems);
+      console.log(addData);
+
+      // console.log(this.allItems);
 
       // this.allItems.reset();
     }

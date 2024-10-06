@@ -13,9 +13,10 @@ export class OrderingPersonComponent {
   selected = new FormControl(0);
   selectedCityIds!: string[];
   pricePerItem: number = 10;
-  constructor(public dialog : MatDialog, private fb : FormBuilder){
+  orderList: any[] = []
+  constructor(public dialog: MatDialog, private fb: FormBuilder) {
     this.orderFormgroup = this.fb.group({
-      selectedTable: [" "],   
+      selectedTable: [" "],
       quantity: [1, [Validators.min(1), Validators.max(10)]]
     });
   }
@@ -33,18 +34,22 @@ export class OrderingPersonComponent {
       menusubCategory: 'Burger',
       subProducts: [
         {
-          productImg :'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
+          productId: 1000,
+          productImg: 'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
           itemName: 'vegg Burger 3 Items 1',
           itemContent: 'Served with fries or Nachos',
-          itemPrize: '333.20',
-          itemType: 'veg'
+          itemPrize: 111.20,
+          itemType: 'veg',
+          btnDisabled: false
         },
         {
-          productImg :'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
+          productId: 1001,
+          productImg: 'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
           itemName: 'Burger 2',
           itemContent: 'Served with fries or Nachos',
-          itemPrize: '333.20',
-          itemType: 'non-veg'
+          itemPrize: 222.20,
+          itemType: 'non-veg',
+          btnDisabled: false
         },
       ]
     },
@@ -52,11 +57,13 @@ export class OrderingPersonComponent {
       menusubCategory: ' Pasta & Chakhna',
       subProducts: [
         {
-          productImg :'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
+          productId: 1003,
+          productImg: 'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
           itemName: 'Pasta 1',
           itemContent: 'Served with fries or Nachos',
-          itemPrize: '333.20',
-          itemType: 'veg'
+          itemPrize: 212.20,
+          itemType: 'veg',
+          btnDisabled: false
         },
       ]
     },
@@ -64,11 +71,13 @@ export class OrderingPersonComponent {
       menusubCategory: ' Pasta 2',
       subProducts: [
         {
-          productImg :'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
+          productId: 1004,
+          productImg: 'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
           itemName: 'Veg Penne Pasta',
           itemContent: 'Served with fries or Nachos',
-          itemPrize: '333.20',
-          itemType: 'veg'
+          itemPrize: 112.20,
+          itemType: 'veg',
+          btnDisabled: false
         },
       ]
     },
@@ -76,73 +85,79 @@ export class OrderingPersonComponent {
       menusubCategory: 'Breads',
       subProducts: [
         {
-          productImg :'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
+          productId: 1005,
+          productImg: 'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
           itemName: 'Bread 1',
           itemContent: 'Served with fries or Nachos',
-          itemPrize: '333.20',
-          itemType: 'veg'
+          itemPrize: 444.20,
+          itemType: 'veg',
+          btnDisabled: false
         },
         {
-          productImg :'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
+          productId: 1006,
+          productImg: 'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
           itemName: 'Bread 2',
           itemContent: 'Served with fries or Nachos',
-          itemPrize: '333.20',
-          itemType: 'veg'
+          itemPrize: 455.20,
+          itemType: 'veg',
+          btnDisabled: false
         },
         {
-          productImg :'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
+          productId: 1007,
+          productImg: 'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
           itemName: 'Bread 3',
           itemContent: 'Served with fries or Nachos',
-          itemPrize: '333.20',
-          itemType: 'non-veg'
+          itemPrize: 666.20,
+          itemType: 'non-veg',
+          btnDisabled: false
         },
         {
-          productImg :'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
+          productId: 1008,
+          productImg: 'https://mrbrownbakery.com/image/images/rEyMLsj21Ooxk5mfhdeh7bSevaLGzUtczWXVDj4u.jpeg?p=full',
           itemName: 'Bread 4',
           itemContent: 'Served with fries or Nachos',
-          itemPrize: '333.20',
-          itemType: 'non-veg'
+          itemPrize: 775.20,
+          itemType: 'non-veg',
+          btnDisabled: false
         },
       ]
     },
   ]
   // ALL PRODUCTS DATA
 
-  increaseQuantity() {
-    const currentQuantity = this.orderFormgroup.get('quantity')?.value;
+  increaseQuantity(index: number) {
+    const currentQuantity = this.orderList[index].quantity;
     if (currentQuantity < 10) {
-      this.orderFormgroup.patchValue({ quantity: currentQuantity + 1 });
+      this.orderList[index].quantity++;
     }
   }
 
-  decreaseQuantity() {
-    const currentQuantity = this.orderFormgroup.get('quantity')?.value;
+  decreaseQuantity(index: number) {
+    const currentQuantity = this.orderList[index].quantity;
     if (currentQuantity > 1) {
-      this.orderFormgroup.patchValue({ quantity: currentQuantity - 1 });
+      this.orderList[index].quantity--;
     }
+  }
+
+  // ITEM ORDER
+  // ORDER MODIFIERS
+  roundUpToTwoDecimals(value: number): number {
+    return Math.ceil(value * 100) / 100;
+  }
+  orderModifier(product: any, index: number) {
+    this.orderList.push({
+      orderName: product.itemName,
+      orderPrize: this.roundUpToTwoDecimals(product.itemPrize),
+      orderId: product.productId,
+      quantity: 1
+    })
+    product.btnDisabled = true;
+    this.pricePerItem = this.roundUpToTwoDecimals(product.itemPrize);
   }
 
   calculateTotal(): number {
-    return this.orderFormgroup.get('quantity')?.value * this.pricePerItem;
-  }
-
-
-  // ITEM ORDER
-  orderList = [
-    {
-      orderName : 'vegg Banana pastry spicy',
-      orderPrize : 400,
-    },
-    {
-      orderName : 'Chicken Biriyani',
-      orderPrize : 150,
-    },
-  ]
-  // ITEM ORDER
-  // ORDER MODIFIERS
-
-  orderModifier() {
-  
+    const total = this.orderList.reduce((acc, item) => acc + (item.quantity * item.orderPrize), 0);
+    return this.roundUpToTwoDecimals(total)
   }
 
   // ORDER MODIFIERS

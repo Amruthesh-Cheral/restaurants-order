@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ContentLayoutComponent implements OnInit{
   public navItems = navItems;
   sidePanel: boolean = false;
-  // darkLight = ''
+  subMenuOpen: { [key: string]: boolean } = {};
   constructor(public darkLight: LocalstorageService, private toastr : ToastrService){
   
   }
@@ -21,5 +21,9 @@ export class ContentLayoutComponent implements OnInit{
   openClose() {
     this.sidePanel = !this.sidePanel
   }
-
+  toggleSubMenu(subname: string) {
+    
+    this.subMenuOpen[subname] = !this.subMenuOpen[subname];
+  }
+  
 }

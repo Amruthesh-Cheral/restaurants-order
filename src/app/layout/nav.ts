@@ -7,7 +7,6 @@ export const navItems: INavData[] = [{
       subname: 'Dashboard',
       icon: 'fa fa-solid fa-user',
       url: '/admin/dashboard',
-
     },
     {
       subname: 'All Orders',
@@ -16,29 +15,6 @@ export const navItems: INavData[] = [{
     },
   ],
 },
-// {
-//   title: true,
-//   name: 'Users',
-//   subCat: [
-//     {
-//       subname: 'Services',
-//       icon: 'fa fa-solid fa-user',
-//       url: '/user/services',
-
-//     },
-// {
-//   subname: 'Reviews / Special',
-//   icon: 'fa fa-star',
-//   url: '/user/specials',
-
-// },
-// {
-//   subname: 'Cheff',
-//   icon: 'fa fa-briefcase',
-//   url: '/user/cheff',
-// },
-//   ],
-// },
 {
   title: true,
   name: 'Order',
@@ -47,35 +23,13 @@ export const navItems: INavData[] = [{
       subname: 'Items',
       icon: 'fa fa-solid fa-user',
       url: '/order/items-order',
-
     },
-    // {
-    //   subname: 'Reviews / Special',
-    //   icon: 'fa fa-star',
-    //   url: '/user/specials',
-
-    // },
-    // {
-    //   subname: 'Cheff',
-    //   icon: 'fa fa-briefcase',
-    //   url: '/user/cheff',
-    // },
   ],
 },
 {
   title: true,
   name: 'Cheff',
   subCat: [
-    // {
-    //   subname: 'Dashboard',
-    //   icon: 'fa fa-star',
-    //   url: '/cheff/dashboard',
-    // },
-    // {
-    //   subname: 'Orders',
-    //   icon: 'fa fa-solid fa-user',
-    //   url: '/cheff/all-orders',
-    // },
     {
       subname: 'Add Product',
       icon: 'fa fa-solid fa-user',
@@ -85,6 +39,18 @@ export const navItems: INavData[] = [{
       subname: 'All Products',
       icon: 'fa fa-solid fa-user',
       url: '/cheff/all-products',
+      // ssubCat: [
+      //   {
+      //     subname: 'All Products',
+      //     icon: 'fa fa-solid fa-user',
+      //     url: '/cheff/all-products',
+      //   },
+      //   {
+      //     subname: 'All Products',
+      //     icon: 'fa fa-users',
+      //     url: '/cheff/all-products',
+      //   }
+      // ]
     },
   ],
 },
