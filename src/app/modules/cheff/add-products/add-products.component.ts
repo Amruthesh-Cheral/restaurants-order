@@ -18,12 +18,16 @@ export class AddProductsComponent implements OnInit {
   foodCategorys: { name: string }[] = [];
   foodTypes: { name: string }[] = [];
 
+  foodVegNon :{ name: string } [ ]= [
+    { name: 'Veg' },
+    {  name: 'Non-Veg' },
+  ];
+
   constructor(public dialog: MatDialog, private cd: ChangeDetectorRef, public fb: FormBuilder, public dataService: ApiHelper, public toster: ToastrService) { }
 
   ngOnInit(): void {
     const alltypeFoods = JSON.parse(localStorage.getItem('foodType') || '[]');
     this.foodTypes = alltypeFoods;
-
     const allCategoryFoods = JSON.parse(localStorage.getItem('foodCategory') || '[]');
     this.foodCategorys = allCategoryFoods;
   }
@@ -34,6 +38,7 @@ export class AddProductsComponent implements OnInit {
     details: [''],
     nonveg: [''],
     veg: [''],
+    foodVegNon:[null],
     selectedFile: [''],
     foodType: [null]
   });
@@ -41,12 +46,12 @@ export class AddProductsComponent implements OnInit {
   // img upload
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
-  
+
   }
 
   // CATEGORY POPUP
   categoryPop(val: string, title: string,) {
-    const dialogRef = this.dialog.open(AddItemModalComponent, {
+    const dialogRef = this.dialog?.open(AddItemModalComponent, {
       width: '400px',
       data: {
         categoryVal: val,
@@ -78,7 +83,6 @@ export class AddProductsComponent implements OnInit {
       this.dataService.alldata(addData);
       this.toster.success("Form Submited Successfully");
       console.log(addData);
-
       // console.log(this.allItems);
 
       // this.allItems.reset();

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { OrderItemComponent } from '../order-item/order-item.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -13,10 +12,11 @@ export class OrderingPersonComponent {
   selected = new FormControl(0);
   selectedCityIds!: string[];
   pricePerItem: number = 10;
-  orderList: any[] = []
+  orderList: any[] = [];
+  roundNum!: number;
   constructor(public dialog: MatDialog, private fb: FormBuilder) {
     this.orderFormgroup = this.fb.group({
-      selectedTable: [" "],
+      selectedTable: [null],
       quantity: [1, [Validators.min(1), Validators.max(10)]]
     });
   }
@@ -128,22 +128,27 @@ export class OrderingPersonComponent {
   increaseQuantity(index: number) {
     const currentQuantity = this.orderList[index].quantity;
     if (currentQuantity < 10) {
-      this.orderList[index].quantity++;
+      console.log(this.orderList[index].quantity);
+
+      Math.round(this.orderList[index].quantity++);
     }
   }
 
   decreaseQuantity(index: number) {
     const currentQuantity = this.orderList[index].quantity;
     if (currentQuantity > 1) {
-      this.orderList[index].quantity--;
+      Math.round(this.orderList[index].quantity--);
     }
   }
 
   // ITEM ORDER
   // ORDER MODIFIERS
   roundUpToTwoDecimals(value: number): number {
-    return Math.ceil(value * 100) / 100;
+    // console.log(Math.round(value * 100) / 100);
+
+    return Math.round(value * 100) / 100;
   }
+
   orderModifier(product: any, index: number) {
     this.orderList.push({
       orderName: product.itemName,
@@ -151,13 +156,19 @@ export class OrderingPersonComponent {
       orderId: product.productId,
       quantity: 1
     })
+
     product.btnDisabled = true;
     this.pricePerItem = this.roundUpToTwoDecimals(product.itemPrize);
   }
 
   calculateTotal(): number {
     const total = this.orderList.reduce((acc, item) => acc + (item.quantity * item.orderPrize), 0);
-    return this.roundUpToTwoDecimals(total)
+    this.roundNum = Math.round(total)
+    return this.roundUpToTwoDecimals(this.roundNum)
+  }
+  mathRoundfunc(value: number) {
+
+    return Math.round(value)
   }
 
   // ORDER MODIFIERS

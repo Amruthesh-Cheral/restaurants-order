@@ -58,7 +58,7 @@
                     </div>
                     <hr class="mt-2 mb-2">
                     <div *ngFor="let item of orderList; index as i">
-                        <div class="d-flex justify-content-between flex-wrap mb-2 align-items-center">
+                        <div class="d-flex justify-content-between mb-2 align-items-center">
                             <h6 class="h7 item-elipsis">{{item.orderName}}</h6>
                             <div class="d-flex align-items-center">
                                 <div class="quantity">
@@ -66,7 +66,7 @@
                                     <input type="number" class="input-box" formControlName="quantity" [value]="item.quantity"  min="1" max="10" readonly>
                                     <button class="plus" (click)="increaseQuantity(i)">&plus;</button>
                                 </div>
-                                <p class="h7 ms-2">₹ <span>{{ item.quantity * item.orderPrize }}</span> </p>
+                                <p class="h7 ms-2 d-flex">₹ <span>{{ mathRoundfunc(item.quantity * item.orderPrize) }}</span> </p>
                             </div>
                         </div>
                         <hr class="mt-2 mb-2">
