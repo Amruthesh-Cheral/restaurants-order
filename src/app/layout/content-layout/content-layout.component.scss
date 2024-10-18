@@ -1,4 +1,10 @@
 @import '../../../assets/scss/utilities/variables';
+.header-sticky{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
 .sidebar {
     width: 240px;
     height: 100vh;

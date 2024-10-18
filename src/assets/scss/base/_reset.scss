@@ -10,7 +10,10 @@ html {
     margin: 0;
     min-height: 100%;
     scroll-behavior: smooth;
-
+}
+html.cdk-global-scrollblock {
+    overflow: hidden !important;
+    position: static;
 }
 
 body {
@@ -18,5 +21,5 @@ body {
     font-family: $font-primary;
     font-weight: normal;
     background: $white;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 }

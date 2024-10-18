@@ -69,7 +69,7 @@ export class AddProductsComponent implements OnInit {
         localStorage.setItem('foodCategory', JSON.stringify(foodcategoryData))
         this.toster.success("Category Added");
       } else {
-        this.toster.warning("Unknown Field");
+       return 
       }
     });
 
