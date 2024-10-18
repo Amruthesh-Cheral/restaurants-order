@@ -18,9 +18,9 @@ export class AddProductsComponent implements OnInit {
   foodCategorys: { name: string }[] = [];
   foodTypes: { name: string }[] = [];
 
-  foodVegNon :{ name: string } [ ]= [
+  foodVegNon: { name: string }[] = [
     { name: 'Veg' },
-    {  name: 'Non-Veg' },
+    { name: 'Non-Veg' },
   ];
 
   constructor(public dialog: MatDialog, private cd: ChangeDetectorRef, public fb: FormBuilder, public dataService: ApiHelper, public toster: ToastrService) { }
@@ -38,7 +38,7 @@ export class AddProductsComponent implements OnInit {
     details: [''],
     nonveg: [''],
     veg: [''],
-    foodVegNon:[null],
+    foodVegNon: [null],
     selectedFile: [''],
     foodType: [null]
   });
@@ -60,11 +60,11 @@ export class AddProductsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.checkVal === 'foodtype') {
-        const foodtypeData = this.foodTypes = [...this.foodTypes, { name: result.itemName }];
+      if (result?.checkVal === 'foodtype') {
+        const foodtypeData = this.foodTypes = [{ name: result?.itemName }];
         this.toster.success("Category Added");
         localStorage.setItem('foodType', JSON.stringify(foodtypeData))
-      } else if (result.checkVal === 'foodCategory') {
+      } else if (result?.checkVal === 'foodCategory') {
         const foodcategoryData = this.foodCategorys = [...this.foodCategorys, { name: result.itemName }];
         localStorage.setItem('foodCategory', JSON.stringify(foodcategoryData))
         this.toster.success("Category Added");

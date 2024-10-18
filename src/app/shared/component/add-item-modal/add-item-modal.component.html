@@ -2,20 +2,26 @@
   <div class="card-body">
     <h5 class="card-title pb-3">{{title}}</h5>
     <form [formGroup]="addItem" (ngSubmit)="addItemFun()">
-      <div *ngIf="typeFood">
-        <div class="d-flex align-items-center mb-2">
-          <ng-select [items]="foodTypes" bindLabel="name" [searchable]="false" [virtualScroll]="true" appendTo="body"
-            placeholder="Food Type" formControlName="foodType">
-          </ng-select>
+      
+      <!-- <div *ngIf="typeFood">
+        <div class="align-items-center mb-2">
+            <ng-select [items]="foodTypes" bindLabel="name" [searchable]="false" [virtualScroll]="true" appendTo="body"
+              placeholder="Food Type" formControlName="foodType">
+            </ng-select>
+            <div *ngIf="addItem.get('foodType')?.invalid && addItem.get('foodType')?.touched">
+              <small class="text-red1" *ngIf="addItem.get('foodType')?.hasError('required')">Field is required.</small>
+            </div>
         </div>
-      </div>
+      </div> -->
 
       <input formControlName="itemName" type="text" placeholder="Add Item" class="form-control">
-      
+
       <div *ngIf="addItem.get('itemName')?.invalid && addItem.get('itemName')?.touched">
         <small class="text-red1" *ngIf="addItem.get('itemName')?.hasError('required')">Field is required.</small>
-        <small class="text-red1" *ngIf="addItem.get('itemName')?.hasError('minlength')">Field must be at least 3 characters long.</small>
+        <small class="text-red1" *ngIf="addItem.get('itemName')?.hasError('minlength')">Field must be at least 3
+          characters long.</small>
       </div>
+      
       <button type="submit" class="mt-3 btn btn-primary" [disabled]="addItem.invalid">Add</button>
     </form>
   </div>

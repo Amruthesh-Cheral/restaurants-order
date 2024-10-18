@@ -11,34 +11,41 @@ import { FormValidationService } from 'src/app/core/service/form-validation.serv
 export class AddItemModalComponent implements OnInit {
   title!: string;
   categoryVal!: string;
+  addItem!: FormGroup;
 
   constructor(private fb: FormBuilder, private validationService: FormValidationService,
     @Inject(MAT_DIALOG_DATA) public data: { categoryVal: string; title: string },
     private dialogRef: MatDialogRef<AddItemModalComponent>) { }
-    typeFood: boolean = false;
-    foodTypes:[] = [];
+  // typeFood: boolean = false;
+  // foodTypes: [] = [];
 
   ngOnInit() {
-
     this.title = this.data.title;
-    const alltypeFoods = JSON.parse(localStorage.getItem('foodType') || '[]');
-    this.foodTypes = alltypeFoods;
-    if (this.data.categoryVal === 'foodCategory') {
-      this.typeFood  = true;
-    }
+    // const alltypeFoods = JSON.parse(localStorage.getItem('foodType') || '[]');
+    // this.foodTypes = alltypeFoods;
+
+    // if (this.data.categoryVal === 'foodCategory') {
+    //   this.typeFood = true;
+    // }
+
+    this.addItem = this.fb.group({
+      itemName: ['', [Validators.required, Validators.minLength(3)]],
+      checkVal: this.data.categoryVal,
+      // foodType: [null, Validators.required]
+    })
+
+    // if (this.data.categoryVal === 'foodCategory') {
+    //   this.addItem.get('foodType')?.setValidators([Validators.required]);
+    // } else {
+    //   this.addItem.get('foodType')?.clearValidators();
+    // }
+    // this.addItem.get('foodType')?.updateValueAndValidity();
   }
 
-  addItem = this.fb.group({
-    itemName: ['', [Validators.required, Validators.minLength(3)]],
-    checkVal: this.data.categoryVal,
-    foodType:[null,Validators.required,]
-  })
 
   addItemFun() {
     const formData = this.addItem.value;
     this.dialogRef.close(formData);
-    console.log(formData);
-    
   }
 
 }
