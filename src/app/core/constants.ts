@@ -5,4 +5,7 @@ export enum ApiEndPoints {
     profileFind = 'profile/find',
     profileUpdate='profile/update',
     search ='prodFlow/catlog/search',
+
+
+    
 }

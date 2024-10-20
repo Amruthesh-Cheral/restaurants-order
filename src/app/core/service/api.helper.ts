@@ -31,6 +31,8 @@ export class ApiHelper {
     }
 
     alldata(data: any) {
+        console.log(data,'datadatadatadata');
+        
         const currentData = this.dataSource.value;
         this.dataSource.next([...currentData, data])
         const fooditemArray = JSON.parse(localStorage.getItem('fooditemArray') || '[]');

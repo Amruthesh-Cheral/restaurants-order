@@ -3,7 +3,7 @@
     <h5 class="card-title pb-3">{{title}}</h5>
     <form [formGroup]="addItem" (ngSubmit)="addItemFun()">
       
-      <!-- <div *ngIf="typeFood">
+      <div *ngIf="typeFood">
         <div class="align-items-center mb-2">
             <ng-select [items]="foodTypes" bindLabel="name" [searchable]="false" [virtualScroll]="true" appendTo="body"
               placeholder="Food Type" formControlName="foodType">
@@ -12,7 +12,7 @@
               <small class="text-red1" *ngIf="addItem.get('foodType')?.hasError('required')">Field is required.</small>
             </div>
         </div>
-      </div> -->
+      </div>
 
       <input formControlName="itemName" type="text" placeholder="Add Item" class="form-control">
 

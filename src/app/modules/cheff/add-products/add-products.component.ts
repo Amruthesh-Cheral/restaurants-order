@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ApiHelper } from 'src/app/core/service/api.helper';
@@ -15,33 +15,92 @@ export class AddProductsComponent implements OnInit {
   selectedFile: File | null = null;
   title!: string;
   text!: string;
-  foodCategorys: { name: string }[] = [];
-  foodTypes: { name: string }[] = [];
+
+  // foodTypes: { name: string }[] = [];
+
+  addfoodTypes = (term: any) => ({ id: term, name: term });
+
+  // addFoodcategory = (term: any) => ({ id: term, name: term });
 
   foodVegNon: { name: string }[] = [
     { name: 'Veg' },
     { name: 'Non-Veg' },
   ];
 
+  foodTypes: { name: string }[] = [
+    { name: 'Chinees' },
+    { name: 'Soup' },
+    { name: 'Pizza' },
+    { name: 'Biriyani' },
+  ];
+
+  foodCategoryMapping = {
+    'Chinese': [
+      { name: 'Noodles' },
+      { name: 'Fried Rice' },
+    ],
+    'Soup': [
+      { name: 'Mutton Soup' },
+      { name: 'Chicken Soup' },
+    ],
+    'Pizza': [
+      { name: 'Veg Pizza' },
+      { name: 'Cheese Pizza' },
+    ],
+    'Biriyani': [
+      { name: 'Mutton Biriyani' },
+      { name: 'Chicken Biriyani' },
+    ]
+  };
+  foodCategorys: { name: string }[] = [];
+
   constructor(public dialog: MatDialog, private cd: ChangeDetectorRef, public fb: FormBuilder, public dataService: ApiHelper, public toster: ToastrService) { }
 
   ngOnInit(): void {
-    const alltypeFoods = JSON.parse(localStorage.getItem('foodType') || '[]');
-    this.foodTypes = alltypeFoods;
-    const allCategoryFoods = JSON.parse(localStorage.getItem('foodCategory') || '[]');
-    this.foodCategorys = allCategoryFoods;
+    // const alltypeFoods = JSON.parse(localStorage.getItem('foodType') || '[]');
+
+    // this.foodTypes = alltypeFoods;
+    // const allCategoryFoods = JSON.parse(localStorage.getItem('foodCategory') || '[]');
+    // this.foodCategorys = allCategoryFoods;
+
+
+    this.firstDisabled()
   }
 
+
+  addFoodcategory(categoryName: string) {
+    console.log(categoryName);
+
+    const newCategory = { name: categoryName };
+    this.foodCategorys = [...this.foodCategorys, newCategory]
+    console.log(newCategory)
+    return newCategory
+  }
+
+
   allItems = this.fb.group({
-    amount: [''],
-    foodCategory: [null],
+    foodType: [null, Validators.required],
+    foodCategory: [{ value: null, disabled: true }, Validators.required],
+    amount: ['', Validators.required],
     details: [''],
-    nonveg: [''],
-    veg: [''],
-    foodVegNon: [null],
-    selectedFile: [''],
-    foodType: [null]
+    // foodVegNon: [null],
+    vegnonveg: ['', Validators.required],
+    // veg: [''],
+    selectedFile: ['']
   });
+
+  firstDisabled() {
+    this.allItems.get('foodType')?.valueChanges.subscribe(selectedFoodtype => {
+      if (selectedFoodtype) {
+        this.foodCategorys = this.foodCategoryMapping[selectedFoodtype] || []
+        console.log('Filtered categories:', this.foodCategorys);
+        this.allItems.get('foodCategory')?.enable();
+      } else {
+        this.foodCategorys = []
+        this.allItems.get('foodCategory')?.disable();
+      }
+    })
+  }
 
   // img upload
   onFileSelected(event: any): void {
@@ -69,7 +128,7 @@ export class AddProductsComponent implements OnInit {
         localStorage.setItem('foodCategory', JSON.stringify(foodcategoryData))
         this.toster.success("Category Added");
       } else {
-       return 
+        return
       }
     });
 
@@ -78,14 +137,25 @@ export class AddProductsComponent implements OnInit {
 
 
   addItems() {
-    if (this.allItems.valid) {
+    if (this.allItems?.valid) {
       const addData = this.allItems.value;
-      this.dataService.alldata(addData);
-      this.toster.success("Form Submited Successfully");
-      console.log(addData);
-      // console.log(this.allItems);
+      const finalData = {
+        foodType: {
+          name: addData.foodType,
+          subCategory: addData.foodCategory
+        },
+        amount: addData.amount,
+        details: addData.details,
+        vegnonveg: addData.vegnonveg,
+        selectedFile: addData.selectedFile
 
-      // this.allItems.reset();
+      }
+      this.dataService.alldata(finalData);
+      console.log(finalData, 'finalData');
+      this.allItems.markAllAsTouched();
+
+      this.toster.success("Form Submited Successfully");
+      this.allItems.reset();
     }
   }
 }
