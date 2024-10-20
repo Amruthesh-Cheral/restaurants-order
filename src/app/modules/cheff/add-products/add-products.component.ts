@@ -148,14 +148,16 @@ export class AddProductsComponent implements OnInit {
         details: addData.details,
         vegnonveg: addData.vegnonveg,
         selectedFile: addData.selectedFile
-
       }
-      this.dataService.alldata(finalData);
-      console.log(finalData, 'finalData');
+      this.dataService.alldata(finalData).subscribe(res =>{
+        this.toster.success("Form Submited Successfully");
+        this.allItems.reset();
+        console.log(res, 'res');
+      },error =>{
+        console.error('Error submitting food data:', error);
+      });
+    }else {
       this.allItems.markAllAsTouched();
-
-      this.toster.success("Form Submited Successfully");
-      this.allItems.reset();
     }
   }
 }
