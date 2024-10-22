@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiEndPoints } from 'src/app/core/constants';
 import { ApiHelper } from 'src/app/core/service/api.helper';
 
 @Component({
@@ -8,18 +10,21 @@ import { ApiHelper } from 'src/app/core/service/api.helper';
 })
 export class AllProductsComponent implements OnInit {
   allProducts: any[] = [];
-  constructor(private dataService: ApiHelper) {}
+
+  constructor(private apiHelper: ApiHelper, private router: Router) { }
 
   ngOnInit() {
-    this.dataService.currentData.subscribe((data => {
-      this.allProducts = data;
-      console.log(this.allProducts);
-      
-    }))
-    const fooditemArray = JSON.parse(localStorage.getItem('fooditemArray') || '[]');
-    this.allProducts = fooditemArray;
+    this.getItems()
     console.log(this.allProducts);
   }
 
-  addPage() {}
+  getItems() {
+    this.apiHelper.post({}, ApiEndPoints.getFood).subscribe(res => {
+      this.allProducts = res.data;
+    })
+  }
+
+  edit(id: number) {
+    this.router.navigate(['/order/add-products', id]);
+  }
 }

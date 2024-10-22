@@ -110,6 +110,7 @@ const routes: Routes = [
         path: 'add-products',
         component: AddProductsComponent
       },
+      { path: 'add-products/:id', component: AddProductsComponent },
      
       
     ]

@@ -6,6 +6,9 @@ export enum ApiEndPoints {
     profileUpdate='profile/update',
     search ='prodFlow/catlog/search',
 
+    // add item
+    addItem = 'food/add-food-item',
+    getFood = 'food/get-food'
 
     
 }

@@ -1,7 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiEndPoints } from 'src/app/core/constants';
 import { ApiHelper } from 'src/app/core/service/api.helper';
 import { AddItemModalComponent } from 'src/app/shared/component/add-item-modal/add-item-modal.component';
 
@@ -12,68 +14,44 @@ import { AddItemModalComponent } from 'src/app/shared/component/add-item-modal/a
 })
 export class AddProductsComponent implements OnInit {
   orderItems: any[] = [];
+  foodItems: any[] = [];
   selectedFile: File | null = null;
   title!: string;
   text!: string;
-
-  // foodTypes: { name: string }[] = [];
-
+  selectedFoodtype!: string;
+  allProductitems: any = []
+  paramId!: string;
+  submitUpdatevar!: string;
   addfoodTypes = (term: any) => ({ id: term, name: term });
-
-  // addFoodcategory = (term: any) => ({ id: term, name: term });
 
   foodVegNon: { name: string }[] = [
     { name: 'Veg' },
     { name: 'Non-Veg' },
   ];
 
-  foodTypes: { name: string }[] = [
-    { name: 'Chinees' },
-    { name: 'Soup' },
-    { name: 'Pizza' },
-    { name: 'Biriyani' },
-  ];
-
-  foodCategoryMapping = {
-    'Chinese': [
-      { name: 'Noodles' },
-      { name: 'Fried Rice' },
-    ],
-    'Soup': [
-      { name: 'Mutton Soup' },
-      { name: 'Chicken Soup' },
-    ],
-    'Pizza': [
-      { name: 'Veg Pizza' },
-      { name: 'Cheese Pizza' },
-    ],
-    'Biriyani': [
-      { name: 'Mutton Biriyani' },
-      { name: 'Chicken Biriyani' },
-    ]
-  };
+  foodTypes: { name: string }[] = [];
+  foodCategoryMapping = {};
   foodCategorys: { name: string }[] = [];
-
-  constructor(public dialog: MatDialog, private cd: ChangeDetectorRef, public fb: FormBuilder, public dataService: ApiHelper, public toster: ToastrService) { }
+  isFormPatched: boolean = false;
+  constructor(public route: ActivatedRoute, public dialog: MatDialog, private cd: ChangeDetectorRef, public fb: FormBuilder, public apiHelper: ApiHelper, public toster: ToastrService) { }
 
   ngOnInit(): void {
-    // const alltypeFoods = JSON.parse(localStorage.getItem('foodType') || '[]');
+    this.firstDisabled();
+    this.getItems();
+    this.paramId = this.route.snapshot.paramMap.get('id')!;
 
-    // this.foodTypes = alltypeFoods;
-    // const allCategoryFoods = JSON.parse(localStorage.getItem('foodCategory') || '[]');
-    // this.foodCategorys = allCategoryFoods;
+    if (!this.paramId) {
+      this.submitUpdatevar = 'Submit'
+    } else {
+        this.submitUpdatevar = 'Update'
+    }
 
-
-    this.firstDisabled()
   }
 
 
   addFoodcategory(categoryName: string) {
-    console.log(categoryName);
-
     const newCategory = { name: categoryName };
     this.foodCategorys = [...this.foodCategorys, newCategory]
-    console.log(newCategory)
     return newCategory
   }
 
@@ -83,18 +61,18 @@ export class AddProductsComponent implements OnInit {
     foodCategory: [{ value: null, disabled: true }, Validators.required],
     amount: ['', Validators.required],
     details: [''],
-    // foodVegNon: [null],
     vegnonveg: ['', Validators.required],
-    // veg: [''],
     selectedFile: ['']
   });
 
   firstDisabled() {
-    this.allItems.get('foodType')?.valueChanges.subscribe(selectedFoodtype => {
-      if (selectedFoodtype) {
-        this.foodCategorys = this.foodCategoryMapping[selectedFoodtype] || []
-        console.log('Filtered categories:', this.foodCategorys);
+    this.allItems.get('foodType')?.valueChanges.subscribe(foodType => {
+      if (foodType) {
+        this.selectedFoodtype = foodType
+        this.foodCategorys = this.foodCategoryMapping[foodType] || []
+        this.getItems()
         this.allItems.get('foodCategory')?.enable();
+        this.foodCategorys = []
       } else {
         this.foodCategorys = []
         this.allItems.get('foodCategory')?.disable();
@@ -109,55 +87,88 @@ export class AddProductsComponent implements OnInit {
   }
 
   // CATEGORY POPUP
-  categoryPop(val: string, title: string,) {
-    const dialogRef = this.dialog?.open(AddItemModalComponent, {
-      width: '400px',
-      data: {
-        categoryVal: val,
-        title: title
-      }
-    });
+  // categoryPop(val: string, title: string,) {
+  //   const dialogRef = this.dialog?.open(AddItemModalComponent, {
+  //     width: '400px',
+  //     data: {
+  //       categoryVal: val,
+  //       title: title
+  //     }
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result?.checkVal === 'foodtype') {
-        const foodtypeData = this.foodTypes = [{ name: result?.itemName }];
-        this.toster.success("Category Added");
-        localStorage.setItem('foodType', JSON.stringify(foodtypeData))
-      } else if (result?.checkVal === 'foodCategory') {
-        const foodcategoryData = this.foodCategorys = [...this.foodCategorys, { name: result.itemName }];
-        localStorage.setItem('foodCategory', JSON.stringify(foodcategoryData))
-        this.toster.success("Category Added");
-      } else {
-        return
-      }
-    });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result?.checkVal === 'foodtype') {
+  //       const foodtypeData = this.foodTypes = [{ name: result?.itemName }];
+  //       this.toster.success("Category Added");
+  //       localStorage.setItem('foodType', JSON.stringify(foodtypeData))
+  //     } else if (result?.checkVal === 'foodCategory') {
+  //       const foodcategoryData = this.foodCategorys = [...this.foodCategorys, { name: result.itemName }];
+  //       localStorage.setItem('foodCategory', JSON.stringify(foodcategoryData))
+  //       this.toster.success("Category Added");
+  //     } else {
+  //       return
+  //     }
+  //   });
 
-  }
+  // }
   // CATEGORY POPUP
 
 
   addItems() {
+    if (!this.paramId) {
+      this.submitUpdatevar = 'Submit'
+      this.submitForm()
+    } else {
+        this.submitUpdatevar = 'Update'
+      this.updateForm()
+    }
+
+  }
+
+  // FORM SUBMIT 
+  submitForm() {
     if (this.allItems?.valid) {
       const addData = this.allItems.value;
-      const finalData = {
-        foodType: {
-          name: addData.foodType,
-          subCategory: addData.foodCategory
-        },
-        amount: addData.amount,
-        details: addData.details,
-        vegnonveg: addData.vegnonveg,
-        selectedFile: addData.selectedFile
-      }
-      this.dataService.alldata(finalData).subscribe(res =>{
+      this.apiHelper.post(addData, ApiEndPoints.addItem).subscribe(res => {
         this.toster.success("Form Submited Successfully");
         this.allItems.reset();
         console.log(res, 'res');
-      },error =>{
+      }, error => {
         console.error('Error submitting food data:', error);
       });
-    }else {
+    } else {
       this.allItems.markAllAsTouched();
     }
   }
+
+  //  UPDATE FORM
+
+  updateForm() {
+    if (this.allItems?.valid) {
+
+    }
+  }
+
+  getItems() {
+    this.apiHelper.post({}, ApiEndPoints.getFood).subscribe((res) => {
+      this.allProductitems = res.data;
+      if (Array.isArray(this.allProductitems)) {
+        this.foodTypes = this.allProductitems.filter(item => item?.foodType).map(item => ({ name: item?.foodType })).filter((value, index, self) => index === self.findIndex((t) => t.name === value.name));
+        this.foodCategorys = this.allProductitems.filter(item => item?.foodType === this.selectedFoodtype).map(items => ({ name: items?.foodCategory })).filter((value, index, self) => index === self.findIndex((t) => t.name === value.name));
+      }
+      this.formPatchval()
+    })
+  }
+
+  // FORM UPDATE PATCH VALUE
+  formPatchval() {
+    let filteredItems: any = this.allProductitems.filter((item: any) => item.id === this.paramId?.toString());
+    if (filteredItems && filteredItems.length > 0) {
+      if (!this.isFormPatched) {
+        this.allItems.patchValue(filteredItems[0]);
+        this.isFormPatched = true;
+      }
+    }
+  }
+  // FORM UPDATE PATCH VALUE
 }

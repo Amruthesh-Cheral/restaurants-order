@@ -52,14 +52,14 @@
 
                             </div>
                             <div class="col-md-6 col-sm12">
-                                <div class="h7 m-0 d-flex">Veg / Non Vegg <strong class="text-red1 ms-1">*</strong>
+                                <div class="h7 m-0 d-flex">Veg - NonVeg <strong class="text-red1 ms-1">*</strong>
                                 </div>
 
                                 <div class="d-flex align-items-center pt-2 " >
-                                <label for="veg"> <p class="m-0 me-2 ms-2 border-green border"><span class="p-2 m-1 d-flex rounded-circle bg-green  "></span> </p> </label>
-                                <input type="radio" value="veg" id="veg" formControlName="vegnonveg">
+                                    <input type="radio" value="veg" id="veg" formControlName="vegnonveg">
+                                    <label for="veg"> <p class="m-0 me-2 ms-2 border-green veg"><span class="p-2 m-1 d-flex rounded-circle bg-green  "></span> </p> </label>
                                 <input type="radio" value="nonveg" class="ms-2" id="nonveg" formControlName="vegnonveg">
-                                <label for="nonveg"><p class="m-0  border-red1 ms-2 border"> <span class="p-2 m-1 d-flex rounded-circle bg-red1  "></span></p> </label>
+                                <label for="nonveg"><p class="m-0  border-red1 ms-2 nonveg"> <span class="p-2 m-1 d-flex rounded-circle bg-red1  "></span></p> </label>
                                 </div>
 
                                 <!-- <ng-select [items]="foodVegNon" bindLabel="name" [searchable]="false"
@@ -87,7 +87,7 @@
 
                     </div>
                 </div>
-                <button type="submit" [disabled]="allItems.invalid" class="btn brand-btn w-100 bg-app-primary text-white mt-3 p-2 ">Submit</button>
+                <button type="submit" [disabled]="allItems.invalid" class="btn brand-btn w-100 bg-app-primary text-white mt-3 p-2 "> {{submitUpdatevar}} </button> 
             </div>
 
         </div>
