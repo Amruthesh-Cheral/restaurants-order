@@ -23,7 +23,11 @@
             </div>
             <div *ngIf="item.vegnonveg === 'veg'"><span class="badge rounded-pill bg-success">Veg</span></div>
           </td>
-          <td><span class="btn badge rounded-pill bg-warning" (click)="edit(item.id)">Edit</span></td>
+          <td>
+            <span class="pe-2 text-green" (click)="edit(item.id)"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>
+            <span class="pe-2 text-red1" (click)="deleteItem(item.id)"><i class="fa fa-trash" aria-hidden="true"></i> </span>
+          
+          </td>
         </tr>
       </tbody>
     </table>

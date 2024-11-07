@@ -145,7 +145,17 @@ export class AddProductsComponent implements OnInit {
 
   updateForm() {
     if (this.allItems?.valid) {
-
+      const addData = this.allItems.value;
+      this.apiHelper.post(addData, ApiEndPoints.updateItem).subscribe(res => {
+      
+        this.toster.success("Form Updated  Successfully");
+        this.allItems.reset();
+        console.log(res, 'res');
+      }, error => {
+        console.error('Error submitting food data:', error);
+      });
+    } else {
+      this.allItems.markAllAsTouched();
     }
   }
 

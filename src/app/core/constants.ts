@@ -8,7 +8,8 @@ export enum ApiEndPoints {
 
     // add item
     addItem = 'food/add-food-item',
-    getFood = 'food/get-food'
+    updateItem = 'food/update-food',
+    getFood = 'food/get-food',
 
     
 }

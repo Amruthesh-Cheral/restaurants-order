@@ -27,4 +27,10 @@ export class AllProductsComponent implements OnInit {
   edit(id: number) {
     this.router.navigate(['/order/add-products', id]);
   }
+
+  deleteItem(id: number) {
+    console.log(id);
+    
+  }
+
 }
