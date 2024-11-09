@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -7,20 +7,23 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   templateUrl: './ordering-person.component.html',
   styleUrls: ['./ordering-person.component.scss']
 })
-export class OrderingPersonComponent {
+export class OrderingPersonComponent implements OnInit {
   orderFormgroup: FormGroup;
   selected = new FormControl(0);
   selectedCityIds!: string[];
   pricePerItem: number = 10;
   orderList: any[] = [];
   roundNum!: number;
+  btnDisabled: boolean = false;
   constructor(public dialog: MatDialog, private fb: FormBuilder) {
     this.orderFormgroup = this.fb.group({
-      selectedTable: [null],
+      selectedTable: [null, Validators.required],
       quantity: [1, [Validators.min(1), Validators.max(10)]]
     });
   }
-
+  ngOnInit(): void {
+    this.deleteItem
+  }
 
   tableNo = [
     { id: 1, name: 'Table No : 1' },
@@ -124,12 +127,9 @@ export class OrderingPersonComponent {
     },
   ]
   // ALL PRODUCTS DATA
-
   increaseQuantity(index: number) {
     const currentQuantity = this.orderList[index].quantity;
     if (currentQuantity < 10) {
-      console.log(this.orderList[index].quantity);
-
       Math.round(this.orderList[index].quantity++);
     }
   }
@@ -145,7 +145,6 @@ export class OrderingPersonComponent {
   // ORDER MODIFIERS
   roundUpToTwoDecimals(value: number): number {
     // console.log(Math.round(value * 100) / 100);
-
     return Math.round(value * 100) / 100;
   }
 
@@ -154,10 +153,13 @@ export class OrderingPersonComponent {
       orderName: product.itemName,
       orderPrize: this.roundUpToTwoDecimals(product.itemPrize),
       orderId: product.productId,
-      quantity: 1
+      quantity: 1,
+      btnDisabled: true
     })
 
     product.btnDisabled = true;
+
+    console.log(this.orderList);
     this.pricePerItem = this.roundUpToTwoDecimals(product.itemPrize);
   }
 
@@ -166,10 +168,31 @@ export class OrderingPersonComponent {
     this.roundNum = Math.round(total)
     return this.roundUpToTwoDecimals(this.roundNum)
   }
-  mathRoundfunc(value: number) {
 
+  mathRoundfunc(value: number) {
     return Math.round(value)
   }
 
   // ORDER MODIFIERS
+
+  deleteItem(item: any) {
+    const index = this.orderList.indexOf(item);
+    if (index > -1) {
+      this.orderList.splice(index, 1);  // Remove the item from orderList
+      // Find the corresponding product in allProducts and enable the button
+      const product = this.allProducts.flatMap(category => category.subProducts)
+        .find(prod => prod.productId === item.orderId);
+      if (product) {
+        product.btnDisabled = false;
+      }
+      console.log(product?.btnDisabled);  // Should log false after re-enabling
+    }
+  }
+  
+  kotOrder() {
+    if (this.orderFormgroup?.valid) {
+      console.log(this.orderList);
+    }
+
+  }
 }

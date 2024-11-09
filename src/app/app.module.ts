@@ -34,6 +34,7 @@ import { OrderItemComponent } from './modules/table-order/order-item/order-item.
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AllProductsComponent } from './modules/cheff/all-products/all-products.component';
 import { AddItemModalComponent } from './shared/component/add-item-modal/add-item-modal.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { AddItemModalComponent } from './shared/component/add-item-modal/add-ite
     MatDatepickerModule,
     MatInputModule,
     MatDialogModule,
+    MatTooltipModule,
     MatCheckboxModule,
     BrowserAnimationsModule ,
     ToastrModule.forRoot(),

@@ -54,8 +54,8 @@
     .item-elipsis{
         white-space: nowrap;
         width: 100%;
-        // max-width: 60%;
-        // overflow: hidden;
-        // text-overflow: ellipsis;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
