@@ -11,5 +11,8 @@ export enum ApiEndPoints {
     updateItem = 'food/update-food',
     getFood = 'food/get-food',
 
+    // Order to kitchen / accounts
+
+    orderItem = 'orderTo'
     
 }

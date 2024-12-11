@@ -10,7 +10,7 @@ import { ApiHelper } from 'src/app/core/service/api.helper';
 })
 export class AllProductsComponent implements OnInit {
   allProducts: any[] = [];
-
+  searchText: string = '';
   constructor(private apiHelper: ApiHelper, private router: Router) { }
 
   ngOnInit() {

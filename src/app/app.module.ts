@@ -35,6 +35,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AllProductsComponent } from './modules/cheff/all-products/all-products.component';
 import { AddItemModalComponent } from './shared/component/add-item-modal/add-item-modal.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { FilterPipe } from './data/filter.pipe';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     OrderItemComponent,
     AllProductsComponent,
     AddItemModalComponent,
+    FilterPipe,
   ],
   imports: [
     MatMenuModule,

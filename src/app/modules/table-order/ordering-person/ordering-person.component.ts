@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiHelper } from 'src/app/core/service/api.helper';
+import { ApiEndPoints } from 'src/app/core/constants';
 
 @Component({
   selector: 'app-ordering-person',
@@ -8,21 +10,34 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./ordering-person.component.scss']
 })
 export class OrderingPersonComponent implements OnInit {
+  
+
+
   orderFormgroup: FormGroup;
   selected = new FormControl(0);
-  selectedCityIds!: string[];
+  selectedTableIds!: string[];
   pricePerItem: number = 10;
   orderList: any[] = [];
   roundNum!: number;
+
+  searchText: string = '';
+
   btnDisabled: boolean = false;
-  constructor(public dialog: MatDialog, private fb: FormBuilder) {
+  constructor(public dialog: MatDialog, public apiHelper: ApiHelper, private fb: FormBuilder) {
     this.orderFormgroup = this.fb.group({
       selectedTable: [null, Validators.required],
       quantity: [1, [Validators.min(1), Validators.max(10)]]
     });
+
+
   }
   ngOnInit(): void {
-    this.deleteItem
+    this.deleteItem;
+    this.orderFormgroup.valueChanges.subscribe(value => {
+      this.selectedTableIds = value.selectedTable; 
+    });
+
+
   }
 
   tableNo = [
@@ -54,7 +69,7 @@ export class OrderingPersonComponent implements OnInit {
           itemType: 'non-veg',
           btnDisabled: false
         },
-      ]
+      ] 
     },
     {
       menusubCategory: ' Pasta & Chakhna',
@@ -125,7 +140,7 @@ export class OrderingPersonComponent implements OnInit {
         },
       ]
     },
-  ]
+  ] 
   // ALL PRODUCTS DATA
   increaseQuantity(index: number) {
     const currentQuantity = this.orderList[index].quantity;
@@ -156,10 +171,7 @@ export class OrderingPersonComponent implements OnInit {
       quantity: 1,
       btnDisabled: true
     })
-
     product.btnDisabled = true;
-
-    console.log(this.orderList);
     this.pricePerItem = this.roundUpToTwoDecimals(product.itemPrize);
   }
 
@@ -188,11 +200,48 @@ export class OrderingPersonComponent implements OnInit {
       console.log(product?.btnDisabled);  // Should log false after re-enabling
     }
   }
-  
+
   kotOrder() {
     if (this.orderFormgroup?.valid) {
-      console.log(this.orderList);
-    }
+      const orderData = this.orderList.map(item => ({
+        orderName: item.orderName,
+        orderPrize: item.orderPrize,
+        orderId: item.orderId,
+        quantity: item.quantity,
+      }))
+      this.printReceipt();
+      // this.apiHelper.post(orderData, ApiEndPoints.orderItem).subscribe(res => {
+      //   console.log('Order sent successfully', res);
+      //   this.printReceipt();
 
+      // }, error => {
+      //   console.error('Error sending order', error);
+      // })
+    }
   }
+
+
+  printReceipt() {
+   
+    
+    let printContent = '<h2>Order Receipt</h2><hr>';
+    printContent += `<p><strong>Table: ${this.selectedTableIds}</strong></p><hr>`;
+
+    
+    this.orderList.forEach(item => {
+      printContent += `
+            <p><strong>${item.orderName}</strong></p>
+            <p>Quantity: ${item.quantity}</p>
+            <p>Price: ₹${this.mathRoundfunc(item.quantity * item.orderPrize)}</p><hr>`;
+    });
+
+    printContent += `<h3>Total: ₹${this.calculateTotal()}</h3>`;
+
+    const printWindow = window.open('', '_blank', 'width=400,height=600');
+    printWindow?.document.write(`<html><body>${printContent}</body></html>`);
+    printWindow?.document.close();
+    printWindow?.print();
+  }
+
+  
 }

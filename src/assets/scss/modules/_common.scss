@@ -20,7 +20,7 @@
         color: #219653;
         background: #fff;
         border: 2px solid green;
-        &::before{
+        &::before {
             background: green;
         }
     }
@@ -28,8 +28,42 @@
         color: red;
         background: #fff;
         border: 2px solid red;
-        &::before{
+        &::before {
             background: red;
         }
+    }
+}
+
+.scrollbar {
+    overflow-y: scroll;
+    max-height: 100%;
+    margin-right: -12px;
+    padding-right: 6px;
+    position: relative;
+    transition: 0.5s;
+    &::-webkit-scrollbar {
+        width: 0;
+        opacity: 0 !important;
+        position: absolute;
+        right: 12px;
+        transition: 0.5s;
+    }
+    &:hover::-webkit-scrollbar {
+        transition: 0.5s;
+        width: 4px;
+        opacity: 1 !important;
+        position: absolute;
+        right: 12px;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        position: absolute;
+        right: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #e6e9f4;
+        position: absolute;
+        right: 12px;
     }
 }

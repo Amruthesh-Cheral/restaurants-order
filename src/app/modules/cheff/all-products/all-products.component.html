@@ -1,5 +1,7 @@
-<div class="card">
-  <div class="card-body">
+
+<input type="search" class="form-control mb-2" placeholder="Search here" [(ngModel)]="searchText">
+<div class="card mb-5">
+  <div class="card-body scrollbar">
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -12,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of allProducts; index as i">
+        <tr *ngFor="let item of allProducts | filter: searchText; index as i">
           <th>{{i+1}}</th>
           <td>{{item.foodType}}</td>
           <td>{{item.foodCategory}}</td>
