@@ -65,12 +65,13 @@
   </div>
 
   <div class="cart-icon">
-    <i  *ngIf="!orderformSection" (click)="openDialog()" class="fa fa-shopping-cart text-white" aria-hidden="true"></i>
+    <div class="cart-wrap">
+      <i  *ngIf="!orderformSection" (click)="openDialog()" class="fa fa-shopping-cart text-white" aria-hidden="true"></i>
+      <span class="count bg-yellow text-light-fade-bg">19</span>
+    </div>
   </div>
 
-
-
-    <div class="shopping-card-area" *ngIf="orderformSection">
+    <div class="shopping-card-area">
       <form [formGroup]="orderFormgroup">
         <div class="card mt-2">
           <div class="card-body order-details p-2">

@@ -68,10 +68,6 @@
     overflow-y: auto;
   }
   
-  .nav-pills {
-    max-height: 80vh;  
-    overflow-y: auto;
-  }
 
  .cart-icon {
     position: fixed;
@@ -86,4 +82,26 @@
     color: var(--white);
     bottom: 67px;
     right: 12px;
+    cursor: pointer;
+    transition: 0.5s;
+    transform: scale(1);
+    .cart-wrap{
+        position: relative;
+        .count{
+            position: absolute;
+            border-radius: 20px;
+            top: -20px;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            right: -20px;
+            justify-content: center;
+            font-weight: 600;
+        }
+    }
+    &:active{
+        transform: scale(0.9);
+    }
  }
