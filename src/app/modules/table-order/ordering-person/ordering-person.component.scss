@@ -59,3 +59,31 @@
         text-overflow: ellipsis;
     }
 }
+
+
+
+
+.tab-content {
+    max-height: 80vh;  
+    overflow-y: auto;
+  }
+  
+  .nav-pills {
+    max-height: 80vh;  
+    overflow-y: auto;
+  }
+
+ .cart-icon {
+    position: fixed;
+    background-color: var(--light-fade-bg);
+    border-radius: 50%;
+    padding: 30px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    bottom: 67px;
+    right: 12px;
+ }

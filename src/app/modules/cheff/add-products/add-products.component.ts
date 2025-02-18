@@ -20,7 +20,7 @@ export class AddProductsComponent implements OnInit {
   text!: string;
   selectedFoodtype!: string;
   allProductitems: any = []
-  paramId!: string;
+  foodId!: string;
   submitUpdatevar!: string;
   addfoodTypes = (term: any) => ({ id: term, name: term });
 
@@ -38,9 +38,9 @@ export class AddProductsComponent implements OnInit {
   ngOnInit(): void {
     this.firstDisabled();
     this.getItems();
-    this.paramId = this.route.snapshot.paramMap.get('id')!;
+    this.foodId = this.route.snapshot.paramMap.get('id')!;
 
-    if (!this.paramId) {
+    if (!this.foodId) {
       this.submitUpdatevar = 'Submit'
     } else {
         this.submitUpdatevar = 'Update'
@@ -115,7 +115,7 @@ export class AddProductsComponent implements OnInit {
 
 
   addItems() {
-    if (!this.paramId) {
+    if (!this.foodId) {
       this.submitUpdatevar = 'Submit'
       this.submitForm()
     } else {
@@ -145,7 +145,14 @@ export class AddProductsComponent implements OnInit {
 
   updateForm() {
     if (this.allItems?.valid) {
-      const addData = this.allItems.value;
+
+      const addData = { 
+        ...this.allItems.value, // Clone the form values
+        id: this.foodId // Add foodId
+      };
+
+
+      // const addData = this.allItems.value;
       this.apiHelper.post(addData, ApiEndPoints.updateItem).subscribe(res => {
       
         this.toster.success("Form Updated  Successfully");
@@ -172,7 +179,7 @@ export class AddProductsComponent implements OnInit {
 
   // FORM UPDATE PATCH VALUE
   formPatchval() {
-    let filteredItems: any = this.allProductitems.filter((item: any) => item.id === this.paramId?.toString());
+    let filteredItems: any = this.allProductitems.filter((item: any) => item.id === this.foodId?.toString());
     if (filteredItems && filteredItems.length > 0) {
       if (!this.isFormPatched) {
         this.allItems.patchValue(filteredItems[0]);

@@ -36,6 +36,7 @@ import { AllProductsComponent } from './modules/cheff/all-products/all-products.
 import { AddItemModalComponent } from './shared/component/add-item-modal/add-item-modal.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { FilterPipe } from './data/filter.pipe';
+import { CartItemsAmountComponent } from './modules/table-order/cart-items-amount/cart-items-amount.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { FilterPipe } from './data/filter.pipe';
     AllProductsComponent,
     AddItemModalComponent,
     FilterPipe,
+    CartItemsAmountComponent,
   ],
   imports: [
     MatMenuModule,

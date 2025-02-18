@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiHelper } from 'src/app/core/service/api.helper';
 import { ApiEndPoints } from 'src/app/core/constants';
+import { CartItemsAmountComponent } from '../cart-items-amount/cart-items-amount.component';
 
 @Component({
   selector: 'app-ordering-person',
@@ -19,25 +20,24 @@ export class OrderingPersonComponent implements OnInit {
   pricePerItem: number = 10;
   orderList: any[] = [];
   roundNum!: number;
-
   searchText: string = '';
-
   btnDisabled: boolean = false;
+  orderformSection: boolean = false;
+  
   constructor(public dialog: MatDialog, public apiHelper: ApiHelper, private fb: FormBuilder) {
     this.orderFormgroup = this.fb.group({
       selectedTable: [null, Validators.required],
       quantity: [1, [Validators.min(1), Validators.max(10)]]
     });
-
-
   }
+
+  
+
   ngOnInit(): void {
     this.deleteItem;
     this.orderFormgroup.valueChanges.subscribe(value => {
       this.selectedTableIds = value.selectedTable; 
     });
-
-
   }
 
   tableNo = [
@@ -46,8 +46,10 @@ export class OrderingPersonComponent implements OnInit {
     { id: 3, name: 'Table No : 3' },
     { id: 4, name: 'Table No : 4' },
   ];
+
   // ALL PRODUCTS DATA
   allProducts = [
+
     {
       menusubCategory: 'Burger',
       subProducts: [
@@ -140,8 +142,20 @@ export class OrderingPersonComponent implements OnInit {
         },
       ]
     },
+
   ] 
+
+
+  selectedTab: number = 0;
+
+  selectTab(index: number) {
+    this.selectedTab = index;
+  }
+
+
+
   // ALL PRODUCTS DATA
+
   increaseQuantity(index: number) {
     const currentQuantity = this.orderList[index].quantity;
     if (currentQuantity < 10) {
@@ -190,16 +204,23 @@ export class OrderingPersonComponent implements OnInit {
   deleteItem(item: any) {
     const index = this.orderList.indexOf(item);
     if (index > -1) {
-      this.orderList.splice(index, 1);  // Remove the item from orderList
-      // Find the corresponding product in allProducts and enable the button
+      this.orderList.splice(index, 1);   
+     
       const product = this.allProducts.flatMap(category => category.subProducts)
         .find(prod => prod.productId === item.orderId);
       if (product) {
         product.btnDisabled = false;
       }
-      console.log(product?.btnDisabled);  // Should log false after re-enabling
+      console.log(product?.btnDisabled);   
     }
   }
+
+  openDialog() {
+  this.dialog.open(CartItemsAmountComponent, {
+
+  });
+}
+
 
   kotOrder() {
     if (this.orderFormgroup?.valid) {
