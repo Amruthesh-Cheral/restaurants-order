@@ -12,8 +12,6 @@ import { CartItemsAmountComponent } from '../cart-items-amount/cart-items-amount
 })
 export class OrderingPersonComponent implements OnInit {
   
-
-
   orderFormgroup: FormGroup;
   selected = new FormControl(0);
   selectedTableIds!: string[];
